@@ -43,11 +43,17 @@ public class EventApi {
     @GetMapping("/search/findByUserConnector")
     Object findByUserConnectorId(
             String userConnectorId, long dateFrom, long dateTo,
-            @PageableDefault Pageable pageable, HttpServletResponse res) {
+            @PageableDefault Pageable pageable) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("userConnectorId", userConnectorId);
+        data.put("dateFrom", dateFrom);
+        data.put("dateTo", dateTo);
+        data.put("pageable", pageable);
+
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
                 .subcategory("Event")
-                .method("findByDate")
+                .method("findByUserConnectorId")
                 .data(data)
                 .build(), Object.class);
     }
