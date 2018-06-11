@@ -1,5 +1,10 @@
 docker_network: docker_network
 
+im:
+  url:
+    base: http://${docker_network}:6001
+    sendmsgsync: ${im.url.base}/onMessageSync
+
 sra:
   url:
     base: http://${docker_network}:6004
