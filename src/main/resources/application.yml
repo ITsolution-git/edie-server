@@ -1,0 +1,20 @@
+docker_network: docker_network
+
+sra:
+  url:
+    base: http://${docker_network}:6004
+    audit:
+      findbyflow: ${sra.url.base}/audit/findByCloned?id={id}
+      findbydate2: ${sra.url.base}/audit/findByDate2
+  product: IM
+
+
+eddie:
+  url:
+    base: http://${docker_network}:6008
+    sendmsg: ${eddie.url.base}/onMessage
+    sendmsgsync: ${eddie.url.base}/sendMessageSync
+flow:
+  url:
+    base: http://${docker_network}:6005
+    sendmsgsync: ${flow.url.base}/api/sendMessageSync
