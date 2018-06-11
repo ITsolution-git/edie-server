@@ -2,7 +2,7 @@ package com.securegion.eddieui.hook;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.securegion.eddieui.model.Audit;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Log4j
+@Log4j2
 @Service
 public class AAAHook {
 
