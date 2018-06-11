@@ -1,7 +1,7 @@
 package com.securegion.eddieui.api;
 
-import com.securegion.imuiserver.hook.AAAHook;
-import com.securegion.imuiserver.model.Audit;
+import com.securegion.eddieui.hook.AAAHook;
+import com.securegion.eddieui.model.Audit;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
