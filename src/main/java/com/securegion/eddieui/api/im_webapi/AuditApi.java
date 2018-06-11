@@ -1,4 +1,4 @@
-package com.securegion.eddieui.api;
+package com.securegion.eddieui.api.im_webapi;
 
 import com.securegion.eddieui.hook.AAAHook;
 import com.securegion.eddieui.model.Audit;
