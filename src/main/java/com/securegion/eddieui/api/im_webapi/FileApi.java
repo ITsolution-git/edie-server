@@ -4,6 +4,7 @@ import com.securegion.eddieui.hook.IMHook;
 import com.securegion.eddieui.model.CustomImage;
 import com.securegion.eddieui.model.Message;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,7 +48,7 @@ public class FileApi {
         try {
             Map<String, Object> data = new HashMap<>();
             data.put("uuid", name);
-            return imHook.sendMessageSync(
+            CustomImage img = imHook.sendMessageSync(
                     Message.builder()
                             .functionCategory("Internal")
                             .subcategory("Image")
@@ -55,9 +56,19 @@ public class FileApi {
                             .data(data)
                             .build(),
                     CustomImage.class);
+            if (img != null) {
+
+                byte[] content = Base64.getDecoder().decode(img.getContent());
+
+                response.setContentLength(content.length);
+                response.setContentType(img.getMimeType());
+
+                IOUtils.write(content, response.getOutputStream());
+            } else {
+                response.sendRedirect("/images/" + name);
+            }
         } catch (Exception e) {
             log.error("Error", e);
         }
-//        imageService.downloadImage(name, response);
     }
 }
