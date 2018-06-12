@@ -1,13 +1,13 @@
 package com.securegion.eddieui.api.im_webapi;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.securegion.eddieui.Const;
 import com.securegion.eddieui.hook.IMHook;
 import com.securegion.eddieui.model.*;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -18,6 +18,7 @@ import java.util.Map;
 @RestController
 public class UserApi {
     @Autowired IMHook imHook;
+    @Autowired ObjectMapper mapper;
 
     @GetMapping("/findAllRoles")
     List<Role> findAllRoles() {
@@ -61,5 +62,65 @@ public class UserApi {
                 .subcategory("User")
                 .method("findAllPermissions")
                 .build(), List.class);
+    }
+
+    @GetMapping("/getUserInfo")
+    User getUserInfo(HttpServletRequest request) {
+        String token = StringUtils.defaultString(request.getHeader(Const.JWT_TOKEN_HEADER_PARAM));
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("User")
+                .method("getUserInfo")
+                .data(mapper.createObjectNode().put("token", token))
+                .build(), User.class);
+    }
+
+    @GetMapping("/getUsers")
+    List<User> getUsers(HttpServletRequest request) {
+        String token = StringUtils.defaultString(request.getHeader(Const.JWT_TOKEN_HEADER_PARAM));
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("User")
+                .method("getUsers")
+                .data(mapper.createObjectNode().put("token", token))
+                .build(), List.class);
+    }
+
+    @PostMapping("/addUser")
+    User addUser(HttpServletRequest request, @RequestBody User user) {
+        String token = StringUtils.defaultString(request.getHeader(Const.JWT_TOKEN_HEADER_PARAM));
+        Map<String, Object> data = new HashMap<>();
+        data.put("token", token);
+        data.put("user", user);
+
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("User")
+                .method("addUser")
+                .data(data)
+                .build(), User.class);
+    }
+
+    @PostMapping("/saveUser")
+    User saveUser(HttpServletRequest request, @RequestBody User user) {
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("User")
+                .method("saveUser")
+                .data(user)
+                .build(), User.class);
+    }
+
+    @DeleteMapping("/deleteUser")
+    Result<String> deleteUser(String userId) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("userId", userId);
+
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("User")
+                .method("saveUser")
+                .data(data)
+                .build(), Result.class);
     }
 }
