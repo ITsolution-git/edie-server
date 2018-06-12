@@ -14,6 +14,7 @@ public class IMHook {
 
     public <T> T sendMessageSync(Message msg, Class<T> responseType) {
         try {
+            log.info(msg);
             return restTemplate.postForObject(URL_SEND_MSG_SYNC, msg, responseType);
         } catch (Exception e) {
             log.error("Error", e);
