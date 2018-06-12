@@ -3,7 +3,9 @@ package com.securegion.eddieui.api.im_webapi;
 import com.securegion.eddieui.hook.IMHook;
 import com.securegion.eddieui.model.Message;
 import com.securegion.eddieui.model.Severity;
+import com.securegion.eddieui.util.PageRequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,10 +30,10 @@ public class IncidentApi {
 
 
     @GetMapping("/search/findBySeverity")
-    Object findBySeverity(Severity[] severity, @PageableDefault Pageable pageable) {
+    Object findBySeverity(Severity[] severity, @PageableDefault PageRequest pageable) {
         Map<String, Object> data = new HashMap<>();
         data.put("severity", severity);
-        data.put("pageable", pageable);
+        data.put("pageRequest", PageRequestUtil.serialize(pageable));
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
                 .subcategory("Incident")
@@ -51,7 +53,7 @@ public class IncidentApi {
                  Boolean fixed,
                  Long afterStartTimestamp,
                  Long beforeStartTimestamp,
-                 @PageableDefault Pageable pageable) {
+                 @PageableDefault PageRequest pageable) {
         Map<String, Object> data = new HashMap<>();
         data.put("id", id);
         data.put("devicename", devicename);
@@ -63,7 +65,7 @@ public class IncidentApi {
         data.put("afterStartTimestamp", afterStartTimestamp);
         data.put("beforeStartTimestamp", beforeStartTimestamp);
         data.put("severity", severity);
-        data.put("pageable", pageable);
+        data.put("pageRequest", PageRequestUtil.serialize(pageable));
 
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")

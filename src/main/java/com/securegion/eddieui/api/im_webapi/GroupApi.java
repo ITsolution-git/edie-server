@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.securegion.eddieui.hook.IMHook;
 import com.securegion.eddieui.model.Group;
 import com.securegion.eddieui.model.Message;
+import com.securegion.eddieui.util.PageRequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +22,12 @@ public class GroupApi {
     @Autowired ObjectMapper mapper;
 
     @GetMapping
-    Object getAll(@PageableDefault Pageable pageable) {
+    Object getAll(@PageableDefault PageRequest pageable) {
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
                 .subcategory("Group")
                 .method("getAll")
-                .data(pageable)
+                .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize(pageable)))
                 .build(), Object.class);
     }
 

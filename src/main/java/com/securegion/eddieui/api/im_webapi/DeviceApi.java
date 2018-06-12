@@ -27,8 +27,7 @@ public class DeviceApi {
                 .functionCategory("Internal")
                 .subcategory("Device")
                 .method("getAll")
-                .data(mapper.createObjectNode()
-                    .put("page", SerializationUtils.serialize(pageable)))
+                .data(mapper.createObjectNode().put("page", SerializationUtils.serialize(pageable)))
                 .build(), Object.class);
     }
 
