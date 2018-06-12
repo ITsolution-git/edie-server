@@ -2,7 +2,6 @@ package com.securegion.eddieui.api.im_webapi;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.securegion.eddieui.hook.IMHook;
-import com.securegion.eddieui.model.Group;
 import com.securegion.eddieui.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -12,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
-@RequestMapping("/group")
+@RequestMapping("/map")
 @RestController
-public class GroupApi {
+public class MapApi {
     @Autowired IMHook imHook;
     @Autowired ObjectMapper mapper;
 
@@ -22,7 +21,7 @@ public class GroupApi {
     Object getAll(@PageableDefault Pageable pageable) {
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
-                .subcategory("Group")
+                .subcategory("Map")
                 .method("getAll")
                 .data(pageable)
                 .build(), Object.class);
@@ -30,10 +29,10 @@ public class GroupApi {
 
     @PostMapping
     @PutMapping("/{id}")
-    Object save(@RequestBody Group entity) {
+    Object save(@RequestBody Map entity) {
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
-                .subcategory("Group")
+                .subcategory("Map")
                 .method("save")
                 .data(entity)
                 .build(), Object.class);
@@ -46,7 +45,7 @@ public class GroupApi {
         }};
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
-                .subcategory("Group")
+                .subcategory("Map")
                 .method("delete")
                 .data(data)
                 .build(), Object.class);
