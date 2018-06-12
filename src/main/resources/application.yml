@@ -1,4 +1,4 @@
-docker_network: docker_network
+docker_network: 172.17.0.1
 
 im:
   url:
