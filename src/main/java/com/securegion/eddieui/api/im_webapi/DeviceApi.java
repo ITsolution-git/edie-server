@@ -5,8 +5,11 @@ import com.securegion.eddieui.hook.IMHook;
 import com.securegion.eddieui.model.Device;
 import com.securegion.eddieui.model.Message;
 import com.securegion.eddieui.model.Result;
+import org.apache.commons.lang3.SerializationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +22,13 @@ public class DeviceApi {
     @Autowired ObjectMapper mapper;
 
     @GetMapping("/device")
-    Object getAll(@PageableDefault Pageable pageable) {
+    Object getAll(@PageableDefault PageRequest pageable) {
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
                 .subcategory("Device")
                 .method("getAll")
-                .data(pageable)
+                .data(mapper.createObjectNode()
+                    .put("page", SerializationUtils.serialize(pageable)))
                 .build(), Object.class);
     }
 
