@@ -42,4 +42,22 @@ public class SearchApi {
                 .data(req)
                 .build(), List.class);
     }
+
+    @GetMapping("/getRecordCount") List<Object> getRecordCount(GenericQuery req) {
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Search")
+                .method("getRecordCount")
+                .data(req)
+                .build(), List.class);
+    }
+
+    @GetMapping("/getRecordCounts") List<Object> getRecordCounts(GenericQuery req) {
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Search")
+                .method("getRecordCounts")
+                .data(req)
+                .build(), List.class);
+    }
 }
