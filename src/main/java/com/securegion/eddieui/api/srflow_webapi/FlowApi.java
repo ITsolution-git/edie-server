@@ -1,17 +1,21 @@
 package com.securegion.eddieui.api.srflow_webapi;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.securegion.imuiserver.Const;
-import com.securegion.imuiserver.hook.FlowHook;
-import com.securegion.imuiserver.model.*;
-import lombok.extern.log4j.Log4j;
+import com.securegion.eddieui.Const;
+import com.securegion.eddieui.hook.FlowHook;
+import com.securegion.eddieui.model.FlowGroup;
+import com.securegion.eddieui.model.FlowSetting;
+import com.securegion.eddieui.model.Message;
+import com.securegion.eddieui.model.Result;
+import com.sun.tools.javac.comp.Flow;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@Log4j
+@Log4j2
 @RestController
 public class FlowApi {
     @Autowired
