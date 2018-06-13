@@ -12,6 +12,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RequestMapping("/parsertype")
@@ -50,6 +51,19 @@ public class ParserTypeApi {
                 .functionCategory("Internal")
                 .subcategory("ParserType")
                 .method("delete")
+                .data(data)
+                .build(), Object.class);
+    }
+
+    @GetMapping("/search/findByTagsIn")
+    Object findByTagsIn(List<String> tag) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("tag", tag);
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("ParserType")
+                .method("findByTagsIn")
                 .data(data)
                 .build(), Object.class);
     }
