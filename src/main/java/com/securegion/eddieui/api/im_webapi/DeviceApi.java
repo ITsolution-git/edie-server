@@ -15,6 +15,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -52,6 +53,58 @@ public class DeviceApi {
                 .functionCategory("Internal")
                 .subcategory("Device")
                 .method("delete")
+                .data(data)
+                .build(), Object.class);
+    }
+
+    @GetMapping("/device/search/findLinesByMapids")
+    Object findLinesByMapids(List<String> mapids) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("mapids", mapids);
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Device")
+                .method("findLinesByMapids")
+                .data(data)
+                .build(), Object.class);
+    }
+
+    @GetMapping("/device/search/findDevicesByMapids")
+    Object findDevicesByMapids(List<String> mapids) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("mapids", mapids);
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Device")
+                .method("findDevicesByMapids")
+                .data(data)
+                .build(), Object.class);
+    }
+
+    @GetMapping("/device/search/findLinesByGroupid")
+    Object findLinesByGroupid(String groupid) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("groupid", groupid);
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Device")
+                .method("findLinesByGroupid")
+                .data(data)
+                .build(), Object.class);
+    }
+
+    @GetMapping("/device/search/findDevicesByGroupid")
+    Object findDevicesByGroupid(String groupid) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("groupid", groupid);
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Device")
+                .method("findDevicesByGroupid")
                 .data(data)
                 .build(), Object.class);
     }
