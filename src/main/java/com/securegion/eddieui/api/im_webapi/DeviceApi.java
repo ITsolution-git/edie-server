@@ -22,7 +22,7 @@ public class DeviceApi {
     @Autowired ObjectMapper mapper;
 
     @GetMapping("/device")
-    Object getAll(@PageableDefault PageRequest pageable) {
+    Object getAll(@PageableDefault Pageable pageable) {
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
                 .subcategory("Device")

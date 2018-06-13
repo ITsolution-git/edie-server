@@ -21,12 +21,12 @@ public class GaugeBoardApi {
     @Autowired ObjectMapper mapper;
 
     @GetMapping
-    Object getAll(@PageableDefault PageRequest pageable) {
+    Object getAll(@PageableDefault Pageable pageable) {
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
                 .subcategory("GaugeBoard")
                 .method("getAll")
-                .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize(pageable)))
+                .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
                 .build(), Object.class);
     }
 

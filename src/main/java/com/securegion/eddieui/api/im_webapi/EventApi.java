@@ -26,13 +26,13 @@ public class EventApi {
 
     @GetMapping("/search/findByDate")
     List<Event> findByDate(String monitorId, long dateFrom, long dateTo,
-                           @PageableDefault PageRequest pageable,
+                           @PageableDefault Pageable pageable,
                            HttpServletResponse res) {
         Map<String, Object> data = new HashMap<>();
         data.put("monitorId", monitorId);
         data.put("dateFrom", dateFrom);
         data.put("dateTo", dateTo);
-        data.put("pageRequest", PageRequestUtil.serialize(pageable));
+        data.put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable));
         List<Event> events = imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
                 .subcategory("Event")
@@ -45,12 +45,12 @@ public class EventApi {
     @GetMapping("/search/findByUserConnector")
     Object findByUserConnectorId(
             String userConnectorId, long dateFrom, long dateTo,
-            @PageableDefault PageRequest pageable) {
+            @PageableDefault Pageable pageable) {
         Map<String, Object> data = new HashMap<>();
         data.put("userConnectorId", userConnectorId);
         data.put("dateFrom", dateFrom);
         data.put("dateTo", dateTo);
-        data.put("pageRequest", PageRequestUtil.serialize(pageable));
+        data.put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable));
 
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")

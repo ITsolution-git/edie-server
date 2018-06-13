@@ -30,10 +30,10 @@ public class IncidentApi {
 
 
     @GetMapping("/search/findBySeverity")
-    Object findBySeverity(Severity[] severity, @PageableDefault PageRequest pageable) {
+    Object findBySeverity(Severity[] severity, @PageableDefault Pageable pageable) {
         Map<String, Object> data = new HashMap<>();
         data.put("severity", severity);
-        data.put("pageRequest", PageRequestUtil.serialize(pageable));
+        data.put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable));
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
                 .subcategory("Incident")
@@ -53,7 +53,7 @@ public class IncidentApi {
                  Boolean fixed,
                  Long afterStartTimestamp,
                  Long beforeStartTimestamp,
-                 @PageableDefault PageRequest pageable) {
+                 @PageableDefault Pageable pageable) {
         Map<String, Object> data = new HashMap<>();
         data.put("id", id);
         data.put("devicename", devicename);
@@ -65,7 +65,7 @@ public class IncidentApi {
         data.put("afterStartTimestamp", afterStartTimestamp);
         data.put("beforeStartTimestamp", beforeStartTimestamp);
         data.put("severity", severity);
-        data.put("pageRequest", PageRequestUtil.serialize(pageable));
+        data.put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable));
 
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
