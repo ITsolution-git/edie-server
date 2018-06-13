@@ -109,6 +109,55 @@ public class DeviceApi {
                 .build(), Object.class);
     }
 
+    @GetMapping("/device/search/findAgents")
+    Object findAgents(@PageableDefault Pageable pageable) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("pageRequest", PageRequestUtil.serialize(pageable));
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Device")
+                .method("findAgents")
+                .data(data)
+                .build(), Object.class);
+    }
+
+    @GetMapping("/device/search/searchByName")
+    Object searchByName(String name, @PageableDefault Pageable pageable) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("name", name);
+            put("pageRequest", PageRequestUtil.serialize(pageable));
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Device")
+                .method("searchByName")
+                .data(data)
+                .build(), Object.class);
+    }
+
+    @GetMapping("/device/search/findAllDevices")
+    Object findAllDevices() {
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Device")
+                .method("findAllDevices")
+                .build(), Object.class);
+    }
+
+    @GetMapping("/device/search/findBySlug")
+    Object findBySlug(String slug) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("slug", slug);
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Device")
+                .method("findBySlug")
+                .data(data)
+                .build(), Object.class);
+    }
+
     @GetMapping("/getHostname") Object getHostname(
             String iporhost, String user, String password,
             boolean isWindows, String collectorId, boolean noCred) {
