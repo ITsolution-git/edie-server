@@ -158,6 +158,19 @@ public class DeviceApi {
                 .build(), Object.class);
     }
 
+    @GetMapping("/device/search/findByMapids")
+    Object findByMapids(List<String> mapids) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("mapids", mapids);
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Device")
+                .method("findByMapids")
+                .data(data)
+                .build(), Object.class);
+    }
+
     @GetMapping("/getHostname") Object getHostname(
             String iporhost, String user, String password,
             boolean isWindows, String collectorId, boolean noCred) {
