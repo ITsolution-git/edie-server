@@ -5,6 +5,7 @@ import com.securegion.eddieui.hook.IMHook;
 import com.securegion.eddieui.model.Device;
 import com.securegion.eddieui.model.Message;
 import com.securegion.eddieui.model.Result;
+import com.securegion.eddieui.util.PageRequestUtil;
 import org.apache.commons.lang3.SerializationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -27,7 +28,7 @@ public class DeviceApi {
                 .functionCategory("Internal")
                 .subcategory("Device")
                 .method("getAll")
-                .data(mapper.createObjectNode().put("page", SerializationUtils.serialize(pageable)))
+                .data(mapper.createObjectNode().put("page", PageRequestUtil.serialize((PageRequest)pageable)))
                 .build(), Object.class);
     }
 
