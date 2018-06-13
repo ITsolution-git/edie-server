@@ -13,6 +13,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RequestMapping("/group")
@@ -51,6 +52,45 @@ public class GroupApi {
                 .functionCategory("Internal")
                 .subcategory("Group")
                 .method("delete")
+                .data(data)
+                .build(), Object.class);
+    }
+
+    @GetMapping("/search/findByMapid")
+    Object findByMapid(String mapid) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("mapid", mapid);
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Group")
+                .method("findByMapid")
+                .data(data)
+                .build(), Object.class);
+    }
+
+    @GetMapping("/search/findByName")
+    Object findByName(String name) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("name", name);
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Group")
+                .method("findByName")
+                .data(data)
+                .build(), Object.class);
+    }
+
+    @GetMapping("/search/findBySlug")
+    Object findBySlug(String slug) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("slug", slug);
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Group")
+                .method("findBySlug")
                 .data(data)
                 .build(), Object.class);
     }
