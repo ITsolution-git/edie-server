@@ -171,6 +171,19 @@ public class DeviceApi {
                 .build(), Object.class);
     }
 
+    @GetMapping("/device/search/findByTagsIn")
+    Object findByTagsIn(List<String> tag) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("tag", tag);
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Device")
+                .method("findByTagsIn")
+                .data(data)
+                .build(), Object.class);
+    }
+
     @GetMapping("/getHostname") Object getHostname(
             String iporhost, String user, String password,
             boolean isWindows, String collectorId, boolean noCred) {
