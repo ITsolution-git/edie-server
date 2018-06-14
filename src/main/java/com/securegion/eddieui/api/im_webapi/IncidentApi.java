@@ -30,7 +30,6 @@ public class IncidentApi {
                 .build(), String.class);
     }
 
-
     @GetMapping("/search/findBySeverity")
     Object findBySeverity(Severity[] severity, @PageableDefault Pageable pageable, HttpServletResponse res) {
         Map<String, Object> data = new HashMap<>();
