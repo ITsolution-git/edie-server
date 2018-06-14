@@ -4,6 +4,7 @@ import com.securegion.eddieui.hook.IMHook;
 import com.securegion.eddieui.model.Message;
 import com.securegion.eddieui.model.Severity;
 import com.securegion.eddieui.util.PageRequestUtil;
+import com.securegion.eddieui.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,16 +32,16 @@ public class IncidentApi {
 
 
     @GetMapping("/search/findBySeverity")
-    Object findBySeverity(Severity[] severity, @PageableDefault Pageable pageable) {
+    Object findBySeverity(Severity[] severity, @PageableDefault Pageable pageable, HttpServletResponse res) {
         Map<String, Object> data = new HashMap<>();
         data.put("severity", severity);
         data.put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable));
-        return imHook.sendMessageSync(Message.builder()
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
                 .subcategory("Incident")
                 .method("findBySeverity")
                 .data(data)
-                .build(), Object.class);
+                .build(), Object.class), res);
     }
 
     @GetMapping("/search/findBy")
