@@ -27,7 +27,7 @@ public class ConnectorApi {
                     .method("getAll")
                     .build();
             Connector[] list = flowHook.sendMessageSync(msg, Connector[].class);
-            log.info(list);
+            log.info(mapper.writeValueAsString(list));
             return list;
         } catch (Exception e) {
             log.error("Error", e);
