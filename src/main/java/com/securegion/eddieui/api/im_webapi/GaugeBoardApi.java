@@ -5,12 +5,14 @@ import com.securegion.eddieui.hook.IMHook;
 import com.securegion.eddieui.model.GaugeBoard;
 import com.securegion.eddieui.model.Message;
 import com.securegion.eddieui.util.PageRequestUtil;
+import com.securegion.eddieui.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,24 +23,24 @@ public class GaugeBoardApi {
     @Autowired ObjectMapper mapper;
 
     @GetMapping
-    Object getAll(@PageableDefault Pageable pageable) {
-        return imHook.sendMessageSync(Message.builder()
+    Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
                 .subcategory("GaugeBoard")
                 .method("getAll")
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
-                .build(), Object.class);
+                .build(), Object.class), res);
     }
 
     @PostMapping
     @PutMapping("/{id}")
-    Object save(@RequestBody GaugeBoard entity) {
-        return imHook.sendMessageSync(Message.builder()
+    Object save(@RequestBody GaugeBoard entity, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
                 .subcategory("GaugeBoard")
                 .method("save")
                 .data(entity)
-                .build(), Object.class);
+                .build(), Object.class), res);
     }
 
     @DeleteMapping("/{id}")
