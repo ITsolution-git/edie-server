@@ -33,7 +33,7 @@ public class FileApi {
             return imHook.sendMessageSync(
                     Message.builder()
                             .functionCategory("Internal")
-                            .subcategory("Image")
+                            .subcategory("File")
                             .method("upload")
                             .data(data)
                             .build(),
@@ -51,7 +51,7 @@ public class FileApi {
             CustomImage img = imHook.sendMessageSync(
                     Message.builder()
                             .functionCategory("Internal")
-                            .subcategory("Image")
+                            .subcategory("File")
                             .method("getByUuid")
                             .data(data)
                             .build(),
