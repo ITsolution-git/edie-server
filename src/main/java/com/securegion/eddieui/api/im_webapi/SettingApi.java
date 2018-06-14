@@ -67,7 +67,7 @@ public class SettingApi {
                 .functionCategory("Internal")
                 .subcategory("Setting")
                 .method("envvars")
-                .build(), List.class), res);
+                .build(), Object.class), res);
     }
 
     @GetMapping("/search/identities")
@@ -76,6 +76,6 @@ public class SettingApi {
                 .functionCategory("Internal")
                 .subcategory("Setting")
                 .method("getByIdentities")
-                .build(), List.class);
+                .build(), Object.class);
     }
 }
