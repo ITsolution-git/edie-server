@@ -62,16 +62,16 @@ public class SettingApi {
     }
 
     @GetMapping("/search/envvars")
-    List<Settings> findByEnvvarsIsNotNull() {
-        return imHook.sendMessageSync(Message.builder()
+    Object findByEnvvarsIsNotNull(HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
                 .subcategory("Setting")
                 .method("envvars")
-                .build(), List.class);
+                .build(), List.class), res);
     }
 
     @GetMapping("/search/identities")
-    List<Settings> findByIdentitiesIsNotNull() {
+    Object findByIdentitiesIsNotNull() {
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
                 .subcategory("Setting")
