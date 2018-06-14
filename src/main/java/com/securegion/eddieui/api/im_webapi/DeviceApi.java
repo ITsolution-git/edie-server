@@ -161,7 +161,7 @@ public class DeviceApi {
     }
 
     @GetMapping("/device/search/findByMapids")
-    Object findByMapids(List<String> mapids) {
+    Object findByMapids(@RequestParam("mapids") List<String> mapids) {
         Map<String, Object> data = new HashMap<String, Object>(){{
             put("mapids", mapids);
         }};

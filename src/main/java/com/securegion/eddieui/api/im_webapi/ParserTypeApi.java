@@ -58,7 +58,7 @@ public class ParserTypeApi {
     }
 
     @GetMapping("/search/findByTagsIn")
-    Object findByTagsIn(List<String> tag) {
+    Object findByTagsIn(@RequestParam("tag") List<String> tag) {
         Map<String, Object> data = new HashMap<String, Object>(){{
             put("tag", tag);
         }};
