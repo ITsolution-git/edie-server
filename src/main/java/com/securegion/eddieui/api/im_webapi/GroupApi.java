@@ -34,6 +34,16 @@ public class GroupApi {
                 .build(), Object.class), res);
     }
 
+    @GetMapping("/{id}")
+    Object getById(@PathVariable("id") String id, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Group")
+                .method("getById")
+                .data(mapper.createObjectNode().put("id", id))
+                .build(), Object.class), res);
+    }
+
     @PostMapping
     @PutMapping("/{id}")
     Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
