@@ -28,24 +28,24 @@ public class SettingApi {
     @Autowired ObjectMapper mapper;
 
     @GetMapping
-    Object getAll(@PageableDefault Pageable pageable) {
-        return imHook.sendMessageSync(Message.builder()
+    Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
                 .subcategory("Setting")
                 .method("getAll")
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
-                .build(), Object.class);
+                .build(), Object.class), res);
     }
 
     @PostMapping
     @PutMapping("/{id}")
-    Object save(@RequestBody JsonNode entity) {
-        return imHook.sendMessageSync(Message.builder()
+    Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
                 .subcategory("Setting")
                 .method("save")
                 .data(entity)
-                .build(), Object.class);
+                .build(), Object.class), res);
     }
 
     @DeleteMapping("/{id}")
