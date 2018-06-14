@@ -25,7 +25,7 @@ public class EventApi {
     @Autowired ObjectMapper mapper;
 
     @GetMapping("/search/findByDate")
-    List<Event> findByDate(String monitorId, long dateFrom, long dateTo,
+    Object findByDate(String monitorId, long dateFrom, long dateTo,
                            @PageableDefault Pageable pageable,
                            HttpServletResponse res) {
         Map<String, Object> data = new HashMap<>();
@@ -33,12 +33,12 @@ public class EventApi {
         data.put("dateFrom", dateFrom);
         data.put("dateTo", dateTo);
         data.put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable));
-        List<Event> events = imHook.sendMessageSync(Message.builder()
+        Object events = imHook.sendMessageSync(Message.builder()
                 .functionCategory("Internal")
                 .subcategory("Event")
                 .method("findByDate")
                 .data(data)
-                .build(), List.class);
+                .build(), Object.class);
         return ResponseUtil.wrapResponse(events, res);
     }
 
