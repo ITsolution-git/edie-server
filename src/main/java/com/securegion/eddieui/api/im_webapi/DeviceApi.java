@@ -174,7 +174,7 @@ public class DeviceApi {
     }
 
     @GetMapping("/device/search/findByTagsIn")
-    Object findByTagsIn(List<String> tag) {
+    Object findByTagsIn(@RequestParam("tag") List<String> tag) {
         Map<String, Object> data = new HashMap<String, Object>(){{
             put("tag", tag);
         }};
