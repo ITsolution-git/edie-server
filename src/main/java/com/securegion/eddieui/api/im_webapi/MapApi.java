@@ -32,6 +32,15 @@ public class MapApi {
     }
 
     @PostMapping
+    Object add(@RequestBody Map entity, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("Dashboard")
+                .subcategory("Map")
+                .method("save")
+                .data(entity)
+                .build(), Object.class), res);
+    }
+
     @PutMapping("/{id}")
     Object save(@RequestBody Map entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()

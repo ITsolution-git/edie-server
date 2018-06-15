@@ -45,6 +45,15 @@ public class GroupApi {
     }
 
     @PostMapping
+    Object add(@RequestBody JsonNode entity, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("Device")
+                .subcategory("Group")
+                .method("save")
+                .data(entity)
+                .build(), Object.class), res);
+    }
+
     @PutMapping("/{id}")
     Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()

@@ -33,6 +33,15 @@ public class TagApi {
     }
 
     @PostMapping
+    Object add(@RequestBody JsonNode entity, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("Internal")
+                .subcategory("Tag")
+                .method("save")
+                .data(entity)
+                .build(), Object.class), res);
+    }
+
     @PutMapping("/{id}")
     Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()

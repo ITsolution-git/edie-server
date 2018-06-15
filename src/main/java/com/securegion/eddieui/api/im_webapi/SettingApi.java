@@ -38,6 +38,15 @@ public class SettingApi {
     }
 
     @PostMapping
+    Object add(@RequestBody JsonNode entity, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("Setting")
+                .subcategory("Setting")
+                .method("save")
+                .data(entity)
+                .build(), Object.class), res);
+    }
+
     @PutMapping("/{id}")
     Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()

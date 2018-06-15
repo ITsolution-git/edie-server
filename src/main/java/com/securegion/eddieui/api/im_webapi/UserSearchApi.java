@@ -33,6 +33,15 @@ public class UserSearchApi {
     }
 
     @PostMapping
+    Object add(@RequestBody UserSearch entity, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("Search")
+                .subcategory("UserSearch")
+                .method("save")
+                .data(entity)
+                .build(), Object.class), res);
+    }
+
     @PutMapping("/{id}")
     Object save(@RequestBody UserSearch entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()

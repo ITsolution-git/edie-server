@@ -33,6 +33,15 @@ public class GaugeApi {
     }
 
     @PostMapping
+    Object add(@RequestBody Gauge entity, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("Dashboard")
+                .subcategory("Gauge")
+                .method("save")
+                .data(entity)
+                .build(), Object.class), res);
+    }
+
     @PutMapping("/{id}")
     Object save(@RequestBody Gauge entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
