@@ -35,7 +35,7 @@ public class DeviceApi {
                 .build(), Object.class), res);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/device/{id}")
     Object getById(@PathVariable("id") String id, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("Device")
@@ -64,7 +64,6 @@ public class DeviceApi {
                 .data(entity)
                 .build(), Object.class), res);
     }
-
 //    @DeleteMapping("/device/{id}")
 //    Object delete(@PathVariable("id") String id) {
 //        Map<String, Object> data = new HashMap<String, Object>(){{
