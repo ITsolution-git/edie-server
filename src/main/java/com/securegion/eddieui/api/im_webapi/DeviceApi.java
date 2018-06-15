@@ -64,18 +64,19 @@ public class DeviceApi {
                 .data(entity)
                 .build(), Object.class), res);
     }
-//    @DeleteMapping("/device/{id}")
-//    Object delete(@PathVariable("id") String id) {
-//        Map<String, Object> data = new HashMap<String, Object>(){{
-//            put("id", id);
-//        }};
-//        return imHook.sendMessageSync(Message.builder()
-//                .functionCategory("Device")
-//                .subcategory("Device")
-//                .method("delete")
-//                .data(data)
-//                .build(), Object.class);
-//    }
+
+    @DeleteMapping("/device/{id}")
+    Object delete(@PathVariable("id") String id) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("id", id);
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Device")
+                .subcategory("Device")
+                .method("delete")
+                .data(data)
+                .build(), Object.class);
+    }
 
     @GetMapping("/device/search/findLinesByMapids")
     Object findLinesByMapids(@RequestParam("mapids") List<String> mapids) {
