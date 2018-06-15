@@ -25,7 +25,7 @@ public class MonitorTemplateApi {
     @GetMapping
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Monitor")
                 .subcategory("MonitorTemplate")
                 .method("getAll")
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
@@ -36,7 +36,7 @@ public class MonitorTemplateApi {
     @PutMapping("/{id}")
     Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Monitor")
                 .subcategory("MonitorTemplate")
                 .method("save")
                 .data(entity)
@@ -49,7 +49,7 @@ public class MonitorTemplateApi {
             put("id", id);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Monitor")
                 .subcategory("MonitorTemplate")
                 .method("delete")
                 .data(data)

@@ -34,7 +34,7 @@ public class EventApi {
         data.put("dateTo", dateTo);
         data.put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable));
         Object events = imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Incident")
                 .subcategory("Event")
                 .method("findByDate")
                 .data(data)
@@ -53,7 +53,7 @@ public class EventApi {
         data.put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable));
 
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Incident")
                 .subcategory("Event")
                 .method("findByUserConnectorId")
                 .data(data)

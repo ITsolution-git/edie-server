@@ -27,7 +27,7 @@ public class GroupApi {
     @GetMapping
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Group")
                 .method("getAll")
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
@@ -37,7 +37,7 @@ public class GroupApi {
     @GetMapping("/{id}")
     Object getById(@PathVariable("id") String id, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Group")
                 .method("getById")
                 .data(mapper.createObjectNode().put("id", id))
@@ -48,7 +48,7 @@ public class GroupApi {
     @PutMapping("/{id}")
     Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Group")
                 .method("save")
                 .data(entity)
@@ -61,7 +61,7 @@ public class GroupApi {
             put("id", id);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Group")
                 .method("delete")
                 .data(data)
@@ -74,7 +74,7 @@ public class GroupApi {
             put("mapid", mapid);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Group")
                 .method("findByMapid")
                 .data(data)
@@ -87,7 +87,7 @@ public class GroupApi {
             put("name", name);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Group")
                 .method("findByName")
                 .data(data)
@@ -100,7 +100,7 @@ public class GroupApi {
             put("slug", slug);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Group")
                 .method("findBySlug")
                 .data(data)

@@ -25,7 +25,7 @@ public class UserSearchApi {
     @GetMapping
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Search")
                 .subcategory("UserSearch")
                 .method("getAll")
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
@@ -36,7 +36,7 @@ public class UserSearchApi {
     @PutMapping("/{id}")
     Object save(@RequestBody UserSearch entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Search")
                 .subcategory("UserSearch")
                 .method("save")
                 .data(entity)
@@ -49,7 +49,7 @@ public class UserSearchApi {
             put("id", id);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Search")
                 .subcategory("UserSearch")
                 .method("delete")
                 .data(data)

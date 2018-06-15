@@ -25,7 +25,7 @@ public class MonitorGroupApi {
     @GetMapping
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Monitor")
                 .subcategory("MonitorGroup")
                 .method("getAll")
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
@@ -36,7 +36,7 @@ public class MonitorGroupApi {
     @PutMapping("/{id}")
     Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Monitor")
                 .subcategory("MonitorGroup")
                 .method("save")
                 .data(entity)
@@ -49,7 +49,7 @@ public class MonitorGroupApi {
             put("id", id);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Monitor")
                 .subcategory("MonitorGroup")
                 .method("delete")
                 .data(data)

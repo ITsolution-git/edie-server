@@ -24,7 +24,7 @@ public class IncidentApi {
 
     @GetMapping("/dashboardinfo") String dashboardinfo() {
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Incident")
                 .subcategory("Incident")
                 .method("dashboardinfo")
                 .build(), String.class);
@@ -36,7 +36,7 @@ public class IncidentApi {
         data.put("severity", severity);
         data.put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable));
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Incident")
                 .subcategory("Incident")
                 .method("findBySeverity")
                 .data(data)
@@ -69,7 +69,7 @@ public class IncidentApi {
         data.put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable));
 
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Incident")
                 .subcategory("Incident")
                 .method("findBy")
                 .data(data)

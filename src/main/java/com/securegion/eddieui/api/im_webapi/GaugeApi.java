@@ -25,7 +25,7 @@ public class GaugeApi {
     @GetMapping
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Dashboard")
                 .subcategory("Gauge")
                 .method("getAll")
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
@@ -36,7 +36,7 @@ public class GaugeApi {
     @PutMapping("/{id}")
     Object save(@RequestBody Gauge entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Dashboard")
                 .subcategory("Gauge")
                 .method("save")
                 .data(entity)
@@ -49,7 +49,7 @@ public class GaugeApi {
             put("id", id);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Dashboard")
                 .subcategory("Gauge")
                 .method("delete")
                 .data(data)

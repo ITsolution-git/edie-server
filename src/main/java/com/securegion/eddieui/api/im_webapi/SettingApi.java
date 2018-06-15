@@ -30,7 +30,7 @@ public class SettingApi {
     @GetMapping
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Setting")
                 .subcategory("Setting")
                 .method("getAll")
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
@@ -41,7 +41,7 @@ public class SettingApi {
     @PutMapping("/{id}")
     Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Setting")
                 .subcategory("Setting")
                 .method("save")
                 .data(entity)
@@ -54,7 +54,7 @@ public class SettingApi {
             put("id", id);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Setting")
                 .subcategory("Setting")
                 .method("delete")
                 .data(data)
@@ -64,7 +64,7 @@ public class SettingApi {
     @GetMapping("/search/envvars")
     Object findByEnvvarsIsNotNull(HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Setting")
                 .subcategory("Setting")
                 .method("envvars")
                 .build(), Object.class), res);
@@ -73,7 +73,7 @@ public class SettingApi {
     @GetMapping("/search/identities")
     Object findByIdentitiesIsNotNull() {
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Setting")
                 .subcategory("Setting")
                 .method("getByIdentities")
                 .build(), Object.class);

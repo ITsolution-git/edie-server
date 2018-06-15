@@ -24,7 +24,7 @@ public class MapApi {
     @GetMapping
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Dashboard")
                 .subcategory("Map")
                 .method("getAll")
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
@@ -35,7 +35,7 @@ public class MapApi {
     @PutMapping("/{id}")
     Object save(@RequestBody Map entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Dashboard")
                 .subcategory("Map")
                 .method("save")
                 .data(entity)
@@ -48,7 +48,7 @@ public class MapApi {
             put("id", id);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Dashboard")
                 .subcategory("Map")
                 .method("delete")
                 .data(data)

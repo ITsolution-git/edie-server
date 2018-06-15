@@ -27,7 +27,7 @@ public class DeviceTemplateApi {
     @GetMapping
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("DeviceTemplate")
                 .method("getAll")
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
@@ -38,7 +38,7 @@ public class DeviceTemplateApi {
     @PutMapping("/{id}")
     Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("DeviceTemplate")
                 .method("save")
                 .data(entity)
@@ -51,7 +51,7 @@ public class DeviceTemplateApi {
             put("id", id);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("DeviceTemplate")
                 .method("delete")
                 .data(data)
@@ -64,7 +64,7 @@ public class DeviceTemplateApi {
             put("tag", tag);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("DeviceTemplate")
                 .method("findByTagsIn")
                 .data(data)
