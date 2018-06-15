@@ -46,6 +46,15 @@ public class DeviceApi {
     }
 
     @PostMapping("/device")
+    Object add(@RequestBody Device entity, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("Device")
+                .subcategory("Device")
+                .method("save")
+                .data(entity)
+                .build(), Object.class), res);
+    }
+
     @PutMapping("/device/{id}")
     Object save(@RequestBody Device entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
