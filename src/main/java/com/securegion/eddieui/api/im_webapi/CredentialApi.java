@@ -33,7 +33,15 @@ public class CredentialApi {
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
                 .build(), Object.class), res);
     }
-
+    @GetMapping("/{id}")
+    Object getById(@PathVariable("id") String id, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("Credential")
+                .subcategory("Credential")
+                .method("getById")
+                .data(mapper.createObjectNode().put("id", id))
+                .build(), Object.class), res);
+    }
     @PostMapping
     Object add(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()

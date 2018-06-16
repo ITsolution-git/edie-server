@@ -34,6 +34,16 @@ public class DeviceTemplateApi {
                 .build(), Object.class), res);
     }
 
+    @GetMapping("/{id}")
+    Object getById(@PathVariable("id") String id, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("Device")
+                .subcategory("DeviceTemplate")
+                .method("getById")
+                .data(mapper.createObjectNode().put("id", id))
+                .build(), Object.class), res);
+    }
+
     @PostMapping
     Object add(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()

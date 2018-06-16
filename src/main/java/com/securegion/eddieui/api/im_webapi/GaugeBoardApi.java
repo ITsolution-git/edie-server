@@ -32,6 +32,16 @@ public class GaugeBoardApi {
                 .build(), Object.class), res);
     }
 
+    @GetMapping("/{id}")
+    Object getById(@PathVariable("id") String id, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("Dashboard")
+                .subcategory("GaugeBoard")
+                .method("getById")
+                .data(mapper.createObjectNode().put("id", id))
+                .build(), Object.class), res);
+    }
+
     @PostMapping
     Object add(@RequestBody GaugeBoard entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
