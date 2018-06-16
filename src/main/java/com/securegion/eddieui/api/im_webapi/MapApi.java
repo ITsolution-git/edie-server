@@ -31,6 +31,16 @@ public class MapApi {
                 .build(), Object.class), res);
     }
 
+    @GetMapping("/{id}")
+    Object getById(@PathVariable("id") String id, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("Dashboard")
+                .subcategory("Map")
+                .method("getById")
+                .data(mapper.createObjectNode().put("id", id))
+                .build(), Object.class), res);
+    }
+
     @PostMapping
     Object add(@RequestBody Map entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
