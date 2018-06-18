@@ -1,0 +1,9 @@
+eddieui-server:
+  image: nexus-dev.securegion.com:18079/eddieui-server
+  container_name: eddieui-server
+  ports:
+    - 6009:8080
+  environment:
+    - SPRING_PROFILES_ACTIVE=container
+    - JAVA_OPTS=-Xms50m -Xmx200m
+  restart: unless-stopped
