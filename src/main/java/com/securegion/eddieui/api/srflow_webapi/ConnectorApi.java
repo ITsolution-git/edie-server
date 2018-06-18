@@ -22,7 +22,7 @@ public class ConnectorApi {
         try {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
-                    .functionCategory("Internal")
+                    .functionCategory("Server")
                     .subcategory("Connector")
                     .method("getAll")
                     .build();
@@ -39,7 +39,7 @@ public class ConnectorApi {
         try {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
-                    .functionCategory("Internal")
+                    .functionCategory("Server")
                     .subcategory("Connector")
                     .method("save")
                     .data(connector)
@@ -56,7 +56,7 @@ public class ConnectorApi {
         try {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
-                    .functionCategory("Internal")
+                    .functionCategory("Server")
                     .subcategory("Connector")
                     .method("delete")
                     .data(connector)
