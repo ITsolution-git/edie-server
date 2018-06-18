@@ -26,7 +26,6 @@ import java.util.Map;
 public class SettingApi {
     @Autowired IMHook imHook;
     @Autowired ObjectMapper mapper;
-
     @GetMapping
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
