@@ -66,7 +66,6 @@ public class SettingApi {
                 .data(entity)
                 .build(), Object.class), res);
     }
-
     @DeleteMapping("/{id}")
     Object delete(@PathVariable("id") String id) {
         Map<String, Object> data = new HashMap<String, Object>(){{
