@@ -28,18 +28,37 @@ public class DeviceApi {
     @GetMapping("/device")
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Device")
                 .method("getAll")
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
                 .build(), Object.class), res);
     }
 
+    @GetMapping("/device/{id}")
+    Object getById(@PathVariable("id") String id, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("Device")
+                .subcategory("Device")
+                .method("getById")
+                .data(mapper.createObjectNode().put("id", id))
+                .build(), Object.class), res);
+    }
+
     @PostMapping("/device")
+    Object add(@RequestBody Device entity, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("Device")
+                .subcategory("Device")
+                .method("save")
+                .data(entity)
+                .build(), Object.class), res);
+    }
+
     @PutMapping("/device/{id}")
     Object save(@RequestBody Device entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Device")
                 .method("save")
                 .data(entity)
@@ -52,7 +71,7 @@ public class DeviceApi {
             put("id", id);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Device")
                 .method("delete")
                 .data(data)
@@ -65,7 +84,7 @@ public class DeviceApi {
             put("mapids", mapids);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Device")
                 .method("findLinesByMapids")
                 .data(data)
@@ -78,7 +97,7 @@ public class DeviceApi {
             put("mapids", mapids);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Device")
                 .method("findDevicesByMapids")
                 .data(data)
@@ -91,7 +110,7 @@ public class DeviceApi {
             put("groupid", groupid);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Device")
                 .method("findLinesByGroupid")
                 .data(data)
@@ -104,7 +123,7 @@ public class DeviceApi {
             put("groupid", groupid);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Device")
                 .method("findDevicesByGroupid")
                 .data(data)
@@ -117,7 +136,7 @@ public class DeviceApi {
             put("pageRequest", PageRequestUtil.serialize(pageable));
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Device")
                 .method("findAgents")
                 .data(data)
@@ -131,7 +150,7 @@ public class DeviceApi {
             put("pageRequest", PageRequestUtil.serialize(pageable));
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Device")
                 .method("searchByName")
                 .data(data)
@@ -141,7 +160,7 @@ public class DeviceApi {
     @GetMapping("/device/search/findAllDevices")
     Object findAllDevices() {
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Device")
                 .method("findAllDevices")
                 .build(), Object.class);
@@ -153,7 +172,7 @@ public class DeviceApi {
             put("slug", slug);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Device")
                 .method("findBySlug")
                 .data(data)
@@ -166,7 +185,7 @@ public class DeviceApi {
             put("mapids", mapids);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Device")
                 .method("findByMapids")
                 .data(data)
@@ -179,7 +198,7 @@ public class DeviceApi {
             put("tag", tag);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Device")
                 .method("findByTagsIn")
                 .data(data)
@@ -190,7 +209,7 @@ public class DeviceApi {
             String iporhost, String user, String password,
             boolean isWindows, String collectorId, boolean noCred) {
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Device")
                 .method("getHostname")
                 .data(mapper.createObjectNode()
@@ -206,7 +225,7 @@ public class DeviceApi {
     @GetMapping("/isAgentUp")
     Result<String> isAgentUp(String id) {
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Device")
                 .method("isAgentUp")
                 .data(mapper.createObjectNode()
@@ -216,7 +235,7 @@ public class DeviceApi {
 
     @GetMapping("/installAgent") Result<String> installAgent(String id, String collectorId) {
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Device")
                 .subcategory("Device")
                 .method("installAgent")
                 .data(mapper.createObjectNode()

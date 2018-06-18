@@ -3,10 +3,10 @@ package com.securegion.eddieui.api.srflow_webapi;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.securegion.eddieui.Const;
 import com.securegion.eddieui.hook.FlowHook;
+import com.securegion.eddieui.model.Connector;
 import com.securegion.eddieui.model.Message;
 import com.securegion.eddieui.model.Result;
 import lombok.extern.log4j.Log4j2;
-import org.apache.catalina.connector.Connector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

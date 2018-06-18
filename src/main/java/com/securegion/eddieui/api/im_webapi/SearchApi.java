@@ -18,7 +18,7 @@ public class SearchApi {
 
     @GetMapping("/query") Object query(GenericQuery req) {
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Search")
                 .subcategory("Search")
                 .method("query")
                 .data(req)
@@ -27,7 +27,7 @@ public class SearchApi {
 
     @GetMapping("/getMapping") Object getMapping() {
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Search")
                 .subcategory("Search")
                 .method("getMapping")
                 .build(), Object.class);
@@ -36,7 +36,7 @@ public class SearchApi {
     @GetMapping("/fields")
     List<Map<String, Object>> fields(GenericQuery req) {
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Search")
                 .subcategory("Search")
                 .method("fields")
                 .data(req)
@@ -45,7 +45,7 @@ public class SearchApi {
 
     @GetMapping("/getRecordCount") List<Object> getRecordCount(GenericQuery req) {
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Search")
                 .subcategory("Search")
                 .method("getRecordCount")
                 .data(req)
@@ -54,7 +54,7 @@ public class SearchApi {
 
     @GetMapping("/getRecordCounts") List<Object> getRecordCounts(GenericQuery req) {
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Internal")
+                .functionCategory("Search")
                 .subcategory("Search")
                 .method("getRecordCounts")
                 .data(req)
