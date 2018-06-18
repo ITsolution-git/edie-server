@@ -23,7 +23,7 @@ public class ShapeApi {
         try {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
-                    .functionCategory("Internal")
+                    .functionCategory("Flow")
                     .subcategory("Shape")
                     .method("getAll")
                     .build();

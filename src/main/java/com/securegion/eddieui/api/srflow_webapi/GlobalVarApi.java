@@ -19,7 +19,7 @@ public class GlobalVarApi {
         try {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
-                    .functionCategory("Internal")
+                    .functionCategory("Flow")
                     .subcategory("GlobalVar")
                     .method("getAll")
                     .build();
