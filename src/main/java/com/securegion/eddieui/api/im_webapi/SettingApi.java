@@ -80,7 +80,7 @@ public class SettingApi {
     }
 
     @GetMapping("/search/envvars")
-    Object findByEnvvarsIsNotNull(HttpServletResponse res) {
+    Object findEnvvars(HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("Setting")
                 .subcategory("Setting")
@@ -89,7 +89,7 @@ public class SettingApi {
     }
 
     @GetMapping("/search/identities")
-    Object findByIdentitiesIsNotNull() {
+    Object findIdentities() {
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("Setting")
                 .subcategory("Setting")
