@@ -1,5 +1,6 @@
 package com.securegion.eddieui.websocket;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.CloseStatus;
@@ -16,6 +17,7 @@ import java.util.Map;
  * Created by Cheng on 5/6/17.
  */
 
+@Log4j2
 @Service
 public class MonitorUISocketHandler extends TextWebSocketHandler {
     private List<WebSocketSession> uiSessionList = new ArrayList<>();
@@ -32,6 +34,6 @@ public class MonitorUISocketHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-
+        log.info("UISocket Message Received: " + message.getPayload());
     }
 }
