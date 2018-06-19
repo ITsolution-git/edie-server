@@ -22,9 +22,7 @@ import org.springframework.web.socket.server.standard.ServletServerContainerFact
 public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer implements WebSocketConfigurer {
 
     @Autowired SimpMessagingTemplate template;
-    @Autowired AgentSocketHandler agentSocketHandler;
     @Autowired MonitorUISocketHandler monitorUISocketHandler;
-    @Autowired CollectorSocketHandler collectorSocketHandler;
     @Autowired EventSocketHandler eventSocketHandler;
 
     private String[] allowedOrigins = new String[] {"http://localhost:3000", "http://eddie.avatar.securegion.com"};
@@ -40,9 +38,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer im
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(agentSocketHandler, "/agentupdate").setAllowedOrigins(allowedOrigins);
         registry.addHandler(monitorUISocketHandler, "/monitorupdate").setAllowedOrigins(allowedOrigins);
-        registry.addHandler(collectorSocketHandler, "/collectorupdate").setAllowedOrigins(allowedOrigins);
         registry.addHandler(eventSocketHandler, "/eventupdate").setAllowedOrigins(allowedOrigins);
         log.info("Registered agent sockets");
     }

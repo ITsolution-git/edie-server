@@ -7,29 +7,31 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by Cheng on 5/6/17.
  */
 
 @Service
 public class MonitorUISocketHandler extends TextWebSocketHandler {
-//    @Autowired MonitorUISocketService monitorUISocketService;
-//    @Autowired SocketHandler socketController;
+    private List<WebSocketSession> uiSessionList = new ArrayList<>();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        super.afterConnectionEstablished(session);
-//        monitorUISocketService.addUISession(session);
+        uiSessionList.add(session);
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-//        monitorUISocketService.removeUISession(session);
-        super.afterConnectionClosed(session, status);
+        uiSessionList.remove(session);
     }
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-//        socketController.handleUIMessage(session, message.getPayload());
+
     }
 }
