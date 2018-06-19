@@ -31,7 +31,6 @@ public class UserSearchApi {
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
                 .build(), Object.class), res);
     }
-
     @GetMapping("/{id}")
     Object getById(@PathVariable("id") String id, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
