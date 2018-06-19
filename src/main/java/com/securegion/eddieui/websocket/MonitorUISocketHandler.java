@@ -1,5 +1,6 @@
 package com.securegion.eddieui.websocket;
 
+import com.securegion.eddieui.hook.IMHook;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ import java.util.Map;
 @Log4j2
 @Service
 public class MonitorUISocketHandler extends TextWebSocketHandler {
+    @Autowired IMHook imHook;
+
     private List<WebSocketSession> uiSessionList = new ArrayList<>();
 
     @Override
