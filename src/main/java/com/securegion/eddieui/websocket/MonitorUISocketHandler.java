@@ -34,6 +34,7 @@ public class MonitorUISocketHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        log.info("UISocket Message Received: " + message.getPayload());
+        String msg = message.getPayload();
+        log.info("UISocket Message Received: " + msg);
     }
 }
