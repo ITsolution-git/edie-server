@@ -1,8 +1,10 @@
 package com.securegion.eddieui.service;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+@Log4j2
 @Service
 public class CybertronService {
     private RestTemplate restTemplate = new RestTemplate();
