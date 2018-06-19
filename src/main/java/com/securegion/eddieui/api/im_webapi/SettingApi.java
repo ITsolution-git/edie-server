@@ -67,17 +67,17 @@ public class SettingApi {
     @DeleteMapping("/{id}")
     Object delete(@PathVariable("id") String id) {
         Map<String, Object> data = new HashMap<String, Object>(){{
-            put("id", id);
-        }};
+    put("id", id);
+}};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("Setting")
-                .subcategory("Setting")
-                .method("delete")
-                .data(data)
-                .build(), Object.class);
-    }
+        .functionCategory("Setting")
+        .subcategory("Setting")
+        .method("delete")
+        .data(data)
+        .build(), Object.class);
+        }
 
-    @GetMapping("/search/envvars")
+@GetMapping("/search/envvars")
     Object findEnvvars(HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("Setting")
