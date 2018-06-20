@@ -25,7 +25,7 @@ public class FlowApi {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
                     .functionCategory("Flow")
-                    .subcategory("Flow")
+                    .subcategory("Manage")
                     .method("addflow")
                     .data(flow)
                     .build();
@@ -43,7 +43,7 @@ public class FlowApi {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
                     .functionCategory("Flow")
-                    .subcategory("Flow")
+                    .subcategory("Manage")
                     .method("updateflow")
                     .data(flow)
                     .build();
@@ -61,7 +61,7 @@ public class FlowApi {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
                     .functionCategory("Flow")
-                    .subcategory("Flow")
+                    .subcategory("Manage")
                     .method("deleteflow")
                     .data(flow)
                     .build();
@@ -79,7 +79,7 @@ public class FlowApi {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
                     .functionCategory("Flow")
-                    .subcategory("Flow")
+                    .subcategory("Manage")
                     .method("getAll")
                     .build();
             Flow[] res = flowHook.sendMessageSync(msg, Flow[].class);
@@ -96,7 +96,7 @@ public class FlowApi {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
                     .functionCategory("Flow")
-                    .subcategory("Flow")
+                    .subcategory("Manage")
                     .method("get")
                     .data(mapper.createObjectNode()
                             .put("flowId", id))
@@ -114,7 +114,7 @@ public class FlowApi {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
                     .functionCategory("Flow")
-                    .subcategory("Flow")
+                    .subcategory("Manage")
                     .method("getByName")
                     .data(mapper.createObjectNode()
                             .put("name", name))
@@ -133,7 +133,7 @@ public class FlowApi {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
                     .functionCategory("Flow")
-                    .subcategory("Flow")
+                    .subcategory("Manage")
                     .method("getAllCloned")
                     .build();
             Flow[] res = flowHook.sendMessageSync(msg, Flow[].class);
@@ -150,7 +150,7 @@ public class FlowApi {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
                     .functionCategory("Flow")
-                    .subcategory("FlowGroup")
+                    .subcategory("Group")
                     .method("getAll")
                     .build();
             FlowGroup[] res = flowHook.sendMessageSync(msg, FlowGroup[].class);
@@ -167,7 +167,7 @@ public class FlowApi {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
                     .functionCategory("Flow")
-                    .subcategory("FlowGroup")
+                    .subcategory("Group")
                     .method("add")
                     .data(group)
                     .build();
@@ -185,7 +185,7 @@ public class FlowApi {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
                     .functionCategory("Flow")
-                    .subcategory("FlowGroup")
+                    .subcategory("Group")
                     .method("update")
                     .data(group)
                     .build();
@@ -203,7 +203,7 @@ public class FlowApi {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
                     .functionCategory("Flow")
-                    .subcategory("FlowGroup")
+                    .subcategory("Group")
                     .method("delete")
                     .data(group)
                     .build();
@@ -221,7 +221,7 @@ public class FlowApi {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
                     .functionCategory("Flow")
-                    .subcategory("Flow")
+                    .subcategory("Manage")
                     .method("saveFlowSetting")
                     .data(entity)
                     .build();
@@ -238,7 +238,7 @@ public class FlowApi {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
                     .functionCategory("Flow")
-                    .subcategory("Flow")
+                    .subcategory("Manage")
                     .method("getFlowSetting")
                     .data(mapper.createObjectNode().put("customerId", customerId))
                     .build();
