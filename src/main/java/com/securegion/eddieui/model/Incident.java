@@ -19,7 +19,9 @@ public class Incident {
     private String name;
     private String devicename;
     private List<String> deviceid;
+    private String agentid;
     private String monitorid;
+    private String monitorName;
     private String monitorgroupid;
     private List<Event> events;
     private List<Incident> incidents;
