@@ -97,7 +97,7 @@ public class FlowApi {
 
     @GetMapping("/getFlowsByDevice")
     Object getFlowsByDevice(String deviceId, HttpServletResponse httpRes) {
-        PagedResult<Flow> pageRes = null;
+        Flow[] res = null;
         try {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
@@ -106,13 +106,11 @@ public class FlowApi {
                     .method("getByDevice")
                     .data(mapper.createObjectNode().put("deviceId", deviceId))
                     .build();
-            Flow[] res = flowHook.sendMessageSync(msg, Flow[].class);
-
-            if (res != null) pageRes = new PagedResult<Flow>(Arrays.asList(res), "flows");
+            res = flowHook.sendMessageSync(msg, Flow[].class);
         } catch (Exception e) {
             log.error("Error", e);
         }
-        return ResponseUtil.wrapResponse(pageRes, httpRes);
+        return ResponseUtil.wrapResponse(res, httpRes);
     }
 
     @GetMapping("/getFlow")
