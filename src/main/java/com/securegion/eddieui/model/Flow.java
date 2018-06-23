@@ -54,5 +54,8 @@ public class Flow {
 
     private String incidentTemplateId;
 
+    private boolean applyAllDevices;
+    private List<String> applyDeviceIds;
+
     private long updated;
 }
