@@ -4,12 +4,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.securegion.eddieui.Const;
 import com.securegion.eddieui.hook.FlowHook;
 import com.securegion.eddieui.model.*;
+import com.securegion.eddieui.util.PageRequestUtil;
+import com.securegion.eddieui.util.ResponseUtil;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 
 @Log4j2
 @RestController
@@ -88,6 +93,26 @@ public class FlowApi {
             log.error("Error", e);
         }
         return null;
+    }
+
+    @GetMapping("/getFlowsByDevice")
+    Object getFlowsByDevice(String deviceId, HttpServletResponse httpRes) {
+        PagedResult<Flow> pageRes = null;
+        try {
+            Message msg = Message.builder()
+                    .type(Const.MSG_TYPE_FUNC)
+                    .functionCategory("Flow")
+                    .subcategory("Manage")
+                    .method("getByDevice")
+                    .data(mapper.createObjectNode().put("deviceId", deviceId))
+                    .build();
+            Flow[] res = flowHook.sendMessageSync(msg, Flow[].class);
+
+            if (res != null) pageRes = new PagedResult<Flow>(Arrays.asList(res), "flows");
+        } catch (Exception e) {
+            log.error("Error", e);
+        }
+        return ResponseUtil.wrapResponse(pageRes, httpRes);
     }
 
     @GetMapping("/getFlow")
