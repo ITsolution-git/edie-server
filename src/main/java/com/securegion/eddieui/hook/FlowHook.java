@@ -12,19 +12,8 @@ import java.util.Arrays;
 @Service
 public class FlowHook {
     @Value("${flow.url.sendmsgsync}") String FLOW_SEND_MSG_SYNC;
-    @Value("${flow.url.sendmsg}") String FLOW_SEND_MSG;
 
     private RestTemplate restTemplate = new RestTemplate();
-
-    public boolean sendMessage(Message msg) {
-        try {
-            restTemplate.postForObject(FLOW_SEND_MSG, Arrays.asList(msg), Object.class);
-            return true;
-        } catch (Exception e) {
-            log.error("Error", e);
-        }
-        return false;
-    }
 
     public <T> T sendMessageSync(Message msg, Class<T> responseType) {
         try {
