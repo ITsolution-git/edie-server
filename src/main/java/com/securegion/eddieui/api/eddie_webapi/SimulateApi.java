@@ -24,8 +24,8 @@ public class SimulateApi {
     @Autowired ObjectMapper mapper;
     @Autowired EddieHook eddieHook;
 
-    @GetMapping("/simulateConnector")
-    public String simulateConnector(String connectorId, String text) {
+    @PostMapping("/simulateConnector")
+    public String simulateConnector(@RequestBody Message m) {
         try {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
@@ -33,8 +33,8 @@ public class SimulateApi {
                     .subcategory("Simulate")
                     .method("simulate")
                     .data(mapper.createObjectNode()
-                            .put("connectorId", connectorId)
-                            .put("text", text))
+                            .put("connectorId", m.getConnectorId())
+                            .put("text", m.getText()))
                     .build();
             String out = eddieHook.sendMessageSync(msg, String.class);
             return out;
