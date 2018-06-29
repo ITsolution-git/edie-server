@@ -27,7 +27,6 @@ public class SimulateApi {
     @PostMapping("/simulateConnector")
     public String simulateConnector(@RequestBody Message m) {
         try {
-            log.info(m);
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
                     .functionCategory("Internal")
