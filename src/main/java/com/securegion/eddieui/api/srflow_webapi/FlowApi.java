@@ -1,5 +1,6 @@
 package com.securegion.eddieui.api.srflow_webapi;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.securegion.eddieui.Const;
 import com.securegion.eddieui.hook.FlowHook;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
 
 @Log4j2
 @RestController
@@ -270,5 +273,22 @@ public class FlowApi {
             log.error("Error", e);
         }
         return null;
+    }
+
+    @PostMapping("/simulateFlowMessage")
+    public String simulateFlowMessage(@RequestBody JsonNode data) {
+        Message msg = Message.builder()
+                .channel(data.path("channel").asText())
+                .incident(Incident.builder()
+                        .startTimestamp(new Date().getTime())
+                        .data(new HashMap<>())
+                        .ip(data.path("ip").asText())
+                        .text(data.path("text").asText())
+                        .tags(Arrays.asList())
+                        .severity(Severity.AUDIT)
+                        .build())
+                .userConnectorId(data.path("userConnectorId").asText())
+                .build();
+        return "OK";
     }
 }
