@@ -22,4 +22,5 @@ eddie:
 flow:
   url:
     base: http://${docker_network}:6005
+    sendmsg: ${flow.url.base}/api/sendMessage
     sendmsgsync: ${flow.url.base}/api/sendMessageSync

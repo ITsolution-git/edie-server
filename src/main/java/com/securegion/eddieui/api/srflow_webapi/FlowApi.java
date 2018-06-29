@@ -277,18 +277,24 @@ public class FlowApi {
 
     @PostMapping("/simulateFlowMessage")
     public String simulateFlowMessage(@RequestBody JsonNode data) {
-        Message msg = Message.builder()
-                .channel(data.path("channel").asText())
-                .incident(Incident.builder()
-                        .startTimestamp(new Date().getTime())
-                        .data(new HashMap<>())
-                        .ip(data.path("ip").asText())
-                        .text(data.path("text").asText())
-                        .tags(Arrays.asList())
-                        .severity(Severity.AUDIT)
-                        .build())
-                .userConnectorId(data.path("userConnectorId").asText())
-                .build();
+        try {
+            Message msg = Message.builder()
+                    .channel(data.path("channel").asText())
+                    .incident(Incident.builder()
+                            .startTimestamp(new Date().getTime())
+                            .data(new HashMap<>())
+                            .ip(data.path("ip").asText())
+                            .text(data.path("text").asText())
+                            .tags(Arrays.asList())
+                            .severity(Severity.AUDIT)
+                            .build())
+                    .userConnectorId(data.path("userConnectorId").asText())
+                    .build();
+            if (!flowHook.sendMessage(msg)) return "Send Failed";
+        } catch (Exception e){
+            log.error("Error", e);
+            return "Failed";
+        }
         return "OK";
     }
 }
