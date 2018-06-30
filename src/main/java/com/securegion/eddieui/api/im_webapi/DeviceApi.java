@@ -7,6 +7,7 @@ import com.securegion.eddieui.model.Message;
 import com.securegion.eddieui.model.Result;
 import com.securegion.eddieui.util.PageRequestUtil;
 import com.securegion.eddieui.util.ResponseUtil;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.SerializationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Log4j2
 @RestController
 public class DeviceApi {
     @Autowired IMHook imHook;
@@ -57,6 +59,7 @@ public class DeviceApi {
 
     @PutMapping("/device/{id}")
     Object save(@RequestBody Device entity, HttpServletResponse res) {
+        log.info("Update Device: " + entity.getId());
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("Device")
                 .subcategory("Device")
@@ -67,6 +70,7 @@ public class DeviceApi {
 
     @DeleteMapping("/device/{id}")
     Object delete(@PathVariable("id") String id) {
+        log.info("Delete Device: " + id);
         Map<String, Object> data = new HashMap<String, Object>(){{
             put("id", id);
         }};
