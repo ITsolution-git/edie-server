@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BasicApi {
     @GetMapping("/version") String version() {
-        return "1.3";
+        return "1.4";
     }
 }
