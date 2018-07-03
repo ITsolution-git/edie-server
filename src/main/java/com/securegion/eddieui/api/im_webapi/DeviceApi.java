@@ -59,7 +59,6 @@ public class DeviceApi {
 
     @PutMapping("/device/{id}")
     Object save(@RequestBody Device entity, HttpServletResponse res) {
-        log.info("Update Device: " + entity.getId());
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("Device")
                 .subcategory("Device")
@@ -70,7 +69,6 @@ public class DeviceApi {
 
     @DeleteMapping("/device/{id}")
     Object delete(@PathVariable("id") String id) {
-        log.info("Delete Device: " + id);
         Map<String, Object> data = new HashMap<String, Object>(){{
             put("id", id);
         }};

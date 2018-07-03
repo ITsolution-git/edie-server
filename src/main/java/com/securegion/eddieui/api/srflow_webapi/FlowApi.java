@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 @Log4j2
 @RestController
@@ -273,5 +274,10 @@ public class FlowApi {
             log.error("Error", e);
         }
         return null;
+    }
+
+    @GetMapping("/flow/search/findByUuidIn")
+    public List<Flow> findByUuidIn() {
+        return Arrays.asList();
     }
 }
