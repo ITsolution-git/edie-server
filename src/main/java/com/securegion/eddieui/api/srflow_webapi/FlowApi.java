@@ -277,7 +277,21 @@ public class FlowApi {
     }
 
     @GetMapping("/flow/search/findByUuidIn")
-    public List<Flow> findByUuidIn() {
-        return Arrays.asList();
+    public Object findByUuidIn(List<String> uuids) {
+        try {
+            Message msg = Message.builder()
+                    .type(Const.MSG_TYPE_FUNC)
+                    .functionCategory("Flow")
+                    .subcategory("Manage")
+                    .method("findByUuidIn")
+                    .data(new HashMap<String, Object>(){{
+                        put("uuids", uuids);
+                    }})
+                    .build();
+            return flowHook.sendMessageSync(msg, Object.class);
+        } catch (Exception e) {
+            log.error("Error", e);
+        }
+        return null;
     }
 }
