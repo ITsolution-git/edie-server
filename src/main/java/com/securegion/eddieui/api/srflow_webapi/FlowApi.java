@@ -274,7 +274,8 @@ public class FlowApi {
     }
 
     @GetMapping("/flow/search/findByUuidIn")
-    public Object findByUuidIn(@RequestParam("uuid") String[] uuids) {
+    public Object findByUuidIn(
+            @RequestParam(name = "uuid", required = false) String[] uuids) {
         try {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
@@ -282,7 +283,7 @@ public class FlowApi {
                     .subcategory("Manage")
                     .method("findByUuidIn")
                     .data(new HashMap<String, Object>(){{
-                        put("uuids", uuids);
+                        put("uuids", uuids == null ? Arrays.asList() : uuids);
                     }})
                     .build();
             return flowHook.sendMessageSync(msg, Object.class);
