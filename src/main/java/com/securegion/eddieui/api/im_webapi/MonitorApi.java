@@ -21,7 +21,7 @@ public class MonitorApi {
     @Autowired IMHook imHook;
     @Autowired ObjectMapper mapper;
 
-    @GetMapping
+    @GetMapping("/addBasicMonitor")
     Object addBasicMonitor(String id, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("Monitor")
