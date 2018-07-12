@@ -30,4 +30,14 @@ public class MonitorApi {
                 .data(mapper.createObjectNode().put("id", id))
                 .build(), Object.class), res);
     }
+
+    @GetMapping("/deleteBasicMonitor")
+    Object deleteBasicMonitor(String id, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("Monitor")
+                .subcategory("Monitors")
+                .method("deleteBasicMonitor")
+                .data(mapper.createObjectNode().put("id", id))
+                .build(), Object.class), res);
+    }
 }
