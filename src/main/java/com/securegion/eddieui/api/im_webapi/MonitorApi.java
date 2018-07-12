@@ -31,12 +31,12 @@ public class MonitorApi {
                 .build(), Object.class), res);
     }
 
-    @GetMapping("/deleteBasicMonitor")
+    @GetMapping("/removeBasicMonitor")
     Object deleteBasicMonitor(String id, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("Monitor")
                 .subcategory("Monitors")
-                .method("deleteBasicMonitor")
+                .method("removeBasicMonitor")
                 .data(mapper.createObjectNode().put("id", id))
                 .build(), Object.class), res);
     }
