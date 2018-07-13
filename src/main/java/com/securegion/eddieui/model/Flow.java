@@ -49,6 +49,7 @@ public class Flow {
     private boolean useCorrelation;
     private List<String> correlations;
     private List<String> tags;
+    private boolean runByDevice;
 
     private List<Incident> incidents;
 
