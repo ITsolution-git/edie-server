@@ -37,15 +37,4 @@ public class Monitor {
     private String agentType;
     private String collectorId;
     private String credentialId;
-
-    public void setStatusWithAutoTimestamp(Status status) {
-        this.status = status;
-        this.lastrun = System.currentTimeMillis();
-
-        if (Status.UP.equals(status)) this.lastsuccess = System.currentTimeMillis();
-        else if (Status.DOWN.equals(status)) this.lastfalure = System.currentTimeMillis();
-        else if (Status.UNKNOWN.equals(status)) this.lastrun = 0L;
-    }
-
-    public enum MonitorType{SECURITY}
 }
