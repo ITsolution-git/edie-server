@@ -24,6 +24,7 @@ public class Monitor {
     private List<String> tags;
     private boolean executable;
     private boolean enabled;
+    private boolean basic;
     private List<String> workflowids;
     private Map<String,Object> params;
     private String action;
