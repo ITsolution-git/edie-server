@@ -186,7 +186,7 @@ public class FlowApi {
     }
 
     @PostMapping("/addFlowGroup")
-    FlowGroup addFlowGroup(@RequestBody FlowGroup group) {
+    Object addFlowGroup(@RequestBody FlowGroup group) {
         try {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
@@ -195,8 +195,7 @@ public class FlowApi {
                     .method("add")
                     .data(group)
                     .build();
-            Result<FlowGroup> res = flowHook.sendMessageSync(msg, Result.class);
-            log.info(mapper.writeValueAsString(res));
+            Result<Object> res = flowHook.sendMessageSync(msg, Result.class);
             if (res.isSuccess()) return res.getObject();
         } catch (Exception e) {
             log.error("Error", e);
@@ -205,7 +204,7 @@ public class FlowApi {
     }
 
     @PostMapping("/updateFlowGroup")
-    FlowGroup updateFlowGroup(@RequestBody FlowGroup group) {
+    Object updateFlowGroup(@RequestBody FlowGroup group) {
         try {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
@@ -214,7 +213,7 @@ public class FlowApi {
                     .method("update")
                     .data(group)
                     .build();
-            Result<FlowGroup> res = flowHook.sendMessageSync(msg, Result.class);
+            Result<Object> res = flowHook.sendMessageSync(msg, Result.class);
             if (res.isSuccess()) return res.getObject();
         } catch (Exception e) {
             log.error("Error", e);
