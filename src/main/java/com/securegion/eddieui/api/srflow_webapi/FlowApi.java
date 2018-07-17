@@ -196,6 +196,7 @@ public class FlowApi {
                     .data(group)
                     .build();
             Result<FlowGroup> res = flowHook.sendMessageSync(msg, Result.class);
+            log.info(mapper.writeValueAsString(res));
             if (res.isSuccess()) return res.getObject();
         } catch (Exception e) {
             log.error("Error", e);
