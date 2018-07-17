@@ -195,8 +195,8 @@ public class FlowApi {
                     .method("add")
                     .data(group)
                     .build();
-            Result<String> res = flowHook.sendMessageSync(msg, Result.class);
-            if (res.isSuccess()) return mapper.readValue(res.getObject(), FlowGroup.class);
+            Result<FlowGroup> res = flowHook.sendMessageSync(msg, Result.class);
+            if (res.isSuccess()) return res.getObject();
         } catch (Exception e) {
             log.error("Error", e);
         }
@@ -213,8 +213,8 @@ public class FlowApi {
                     .method("update")
                     .data(group)
                     .build();
-            Result<String> res = flowHook.sendMessageSync(msg, Result.class);
-            if (res.isSuccess()) return mapper.readValue(res.getObject(), FlowGroup.class);
+            Result<FlowGroup> res = flowHook.sendMessageSync(msg, Result.class);
+            if (res.isSuccess()) return res.getObject();
         } catch (Exception e) {
             log.error("Error", e);
         }
