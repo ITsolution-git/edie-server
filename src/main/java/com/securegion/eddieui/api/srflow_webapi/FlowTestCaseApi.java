@@ -2,6 +2,7 @@ package com.securegion.eddieui.api.srflow_webapi;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.securegion.eddieui.Const;
 import com.securegion.eddieui.hook.FlowHook;
 import com.securegion.eddieui.model.Message;
 import com.securegion.eddieui.util.ResponseUtil;
@@ -25,6 +26,7 @@ public class FlowTestCaseApi {
     @GetMapping
     Object getAll(HttpServletResponse res) {
         return ResponseUtil.wrapResponse(flowHook.sendMessageSync(Message.builder()
+                .type(Const.MSG_TYPE_FUNC)
                 .functionCategory("Flow")
                 .subcategory("TestCase")
                 .method("getAll")
@@ -34,6 +36,7 @@ public class FlowTestCaseApi {
     @GetMapping("/{id}")
     Object getById(@PathVariable("id") String id, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(flowHook.sendMessageSync(Message.builder()
+                .type(Const.MSG_TYPE_FUNC)
                 .functionCategory("Flow")
                 .subcategory("TestCase")
                 .method("getById")
@@ -44,6 +47,7 @@ public class FlowTestCaseApi {
     @PostMapping
     Object add(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(flowHook.sendMessageSync(Message.builder()
+                .type(Const.MSG_TYPE_FUNC)
                 .functionCategory("Flow")
                 .subcategory("TestCase")
                 .method("save")
@@ -54,6 +58,7 @@ public class FlowTestCaseApi {
     @PutMapping("/{id}")
     Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(flowHook.sendMessageSync(Message.builder()
+                .type(Const.MSG_TYPE_FUNC)
                 .functionCategory("Flow")
                 .subcategory("TestCase")
                 .method("save")
@@ -67,6 +72,7 @@ public class FlowTestCaseApi {
             put("id", id);
         }};
         return flowHook.sendMessageSync(Message.builder()
+                .type(Const.MSG_TYPE_FUNC)
                 .functionCategory("Flow")
                 .subcategory("TestCase")
                 .method("delete")

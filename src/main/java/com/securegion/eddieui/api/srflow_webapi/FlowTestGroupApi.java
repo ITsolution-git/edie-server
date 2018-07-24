@@ -31,6 +31,7 @@ public class FlowTestGroupApi {
     @GetMapping
     Object getAll(HttpServletResponse res) {
         return ResponseUtil.wrapResponse(flowHook.sendMessageSync(Message.builder()
+                .type(Const.MSG_TYPE_FUNC)
                 .functionCategory("Flow")
                 .subcategory("TestGroup")
                 .method("getAll")
@@ -40,6 +41,7 @@ public class FlowTestGroupApi {
     @GetMapping("/{id}")
     Object getById(@PathVariable("id") String id, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(flowHook.sendMessageSync(Message.builder()
+                .type(Const.MSG_TYPE_FUNC)
                 .functionCategory("Flow")
                 .subcategory("TestGroup")
                 .method("getById")
@@ -50,6 +52,7 @@ public class FlowTestGroupApi {
     @PostMapping
     Object add(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(flowHook.sendMessageSync(Message.builder()
+                .type(Const.MSG_TYPE_FUNC)
                 .functionCategory("Flow")
                 .subcategory("TestGroup")
                 .method("save")
@@ -60,6 +63,7 @@ public class FlowTestGroupApi {
     @PutMapping("/{id}")
     Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(flowHook.sendMessageSync(Message.builder()
+                .type(Const.MSG_TYPE_FUNC)
                 .functionCategory("Flow")
                 .subcategory("TestGroup")
                 .method("save")
@@ -73,6 +77,7 @@ public class FlowTestGroupApi {
             put("id", id);
         }};
         return flowHook.sendMessageSync(Message.builder()
+                .type(Const.MSG_TYPE_FUNC)
                 .functionCategory("Flow")
                 .subcategory("TestGroup")
                 .method("delete")
