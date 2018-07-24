@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -18,5 +19,5 @@ public class FlowTestCase {
     private String name;
     private String groupId;
 
-    private Map<String, Object> message;
+    private List<Map<String, Object>> messages;
 }
