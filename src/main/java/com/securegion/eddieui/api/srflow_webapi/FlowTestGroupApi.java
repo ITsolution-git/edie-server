@@ -29,12 +29,11 @@ public class FlowTestGroupApi {
     @Autowired ObjectMapper mapper;
 
     @GetMapping
-    Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
+    Object getAll(HttpServletResponse res) {
         return ResponseUtil.wrapResponse(flowHook.sendMessageSync(Message.builder()
                 .functionCategory("Flow")
                 .subcategory("TestGroup")
                 .method("getAll")
-                .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
                 .build(), Object.class), res);
     }
 
