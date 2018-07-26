@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.securegion.eddieui.Const;
 import com.securegion.eddieui.hook.EddieHook;
+import com.securegion.eddieui.hook.FlowHook;
 import com.securegion.eddieui.model.Incident;
 import com.securegion.eddieui.model.Message;
 import com.securegion.eddieui.model.Severity;
@@ -17,26 +18,25 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 @Log4j2
 @RestController
 public class SimulateApi {
     @Autowired ObjectMapper mapper;
-    @Autowired EddieHook eddieHook;
+    @Autowired FlowHook flowHook;
 
     @PostMapping("/simulateConnector")
-    public String simulateConnector(@RequestBody Message m) {
+    public String simulateConnector(@RequestBody List<Message> m) {
         try {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
                     .functionCategory("Internal")
                     .subcategory("Simulate")
                     .method("simulate")
-                    .data(mapper.createObjectNode()
-                            .put("connectorId", m.getConnectorId())
-                            .put("text", m.getText()))
+                    .data(m)
                     .build();
-            String out = eddieHook.sendMessageSync(msg, String.class);
+            String out = flowHook.sendMessageSync(msg, String.class);
             return out;
         } catch (Exception e){
             log.error("Error", e);
