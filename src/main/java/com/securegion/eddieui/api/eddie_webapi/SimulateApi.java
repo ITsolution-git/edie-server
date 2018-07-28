@@ -7,6 +7,7 @@ import com.securegion.eddieui.hook.EddieHook;
 import com.securegion.eddieui.hook.FlowHook;
 import com.securegion.eddieui.model.Incident;
 import com.securegion.eddieui.model.Message;
+import com.securegion.eddieui.model.Result;
 import com.securegion.eddieui.model.Severity;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class SimulateApi {
     @Autowired FlowHook flowHook;
 
     @PostMapping("/simulateConnector")
-    public String simulateConnector(@RequestBody List<Message> m) {
+    public Object simulateConnector(@RequestBody List<Message> m) {
         try {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
@@ -38,11 +39,11 @@ public class SimulateApi {
                         put("messages", m);
                     }})
                     .build();
-            String out = flowHook.sendMessageSync(msg, String.class);
+            Result<Object> out = flowHook.sendMessageSync(msg, Result.class);
             return out;
         } catch (Exception e){
             log.error("Error", e);
         }
-        return "Failed";
+        return new Result<Object>();
     }
 }
