@@ -32,7 +32,7 @@ public class SimulateApi {
         try {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
-                    .functionCategory("Internal")
+                    .functionCategory("Flow")
                     .subcategory("Simulate")
                     .method("simulate")
                     .data(new HashMap<String, Object>(){{
