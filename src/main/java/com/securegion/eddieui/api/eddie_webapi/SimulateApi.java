@@ -34,7 +34,9 @@ public class SimulateApi {
                     .functionCategory("Internal")
                     .subcategory("Simulate")
                     .method("simulate")
-                    .data(m)
+                    .data(new HashMap<String, Object>(){{
+                        put("messages", m);
+                    }})
                     .build();
             String out = flowHook.sendMessageSync(msg, String.class);
             return out;
