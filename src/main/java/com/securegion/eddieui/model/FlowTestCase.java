@@ -17,6 +17,7 @@ public class FlowTestCase {
     @Id
     private String id;
     private String name;
+    private String description;
     private String groupId;
 
     private List<Map<String, Object>> messages;
