@@ -44,7 +44,7 @@ public class FlowSimulateApi {
         return new Result<Object>();
     }
 
-    @PostMapping("/getTestQueueList")
+    @GetMapping("/getTestQueueList")
     public Object getTestQueueList() {
         try {
             Message msg = Message.builder()
@@ -58,5 +58,21 @@ public class FlowSimulateApi {
             log.error("Error", e);
         }
         return null;
+    }
+
+    @GetMapping("/clearTestQueue")
+    public Result<Object> clearTestQueue() {
+        try {
+            Message msg = Message.builder()
+                    .type(Const.MSG_TYPE_FUNC)
+                    .functionCategory("Incident")
+                    .subcategory("Manage")
+                    .method("clearTestQueue")
+                    .build();
+            return flowHook.sendMessageSync(msg, Result.class);
+        } catch (Exception e){
+            log.error("Error", e);
+        }
+        return new Result<>();
     }
 }
