@@ -43,4 +43,20 @@ public class FlowSimulateApi {
         }
         return new Result<Object>();
     }
+
+    @PostMapping("/getTestQueueList")
+    public Object getTestQueueList() {
+        try {
+            Message msg = Message.builder()
+                    .type(Const.MSG_TYPE_FUNC)
+                    .functionCategory("Incident")
+                    .subcategory("Manage")
+                    .method("getTestQueueList")
+                    .build();
+            return flowHook.sendMessageSync(msg, Object.class);
+        } catch (Exception e){
+            log.error("Error", e);
+        }
+        return null;
+    }
 }
