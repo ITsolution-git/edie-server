@@ -23,9 +23,10 @@ import java.util.*;
 public class FlowSimulateApi {
     @Autowired ObjectMapper mapper;
     @Autowired FlowHook flowHook;
+    @Autowired EddieHook eddieHook;
 
-    @PostMapping("/simulateConnector")
-    public Object simulateConnector(@RequestBody List<Map<String, Object>> m) {
+    @PostMapping("/simulateMessages")
+    public Object simulateMessages(@RequestBody List<Map<String, Object>> m) {
         try {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
@@ -42,6 +43,26 @@ public class FlowSimulateApi {
             log.error("Error", e);
         }
         return new Result<Object>();
+    }
+
+    @PostMapping("/simulateConnector")
+    public String simulateConnector(@RequestBody Message m) {
+        try {
+            Message msg = Message.builder()
+                    .type(Const.MSG_TYPE_FUNC)
+                    .functionCategory("Internal")
+                    .subcategory("Simulate")
+                    .method("simulate")
+                    .data(mapper.createObjectNode()
+                            .put("connectorId", m.getConnectorId())
+                            .put("text", m.getText()))
+                    .build();
+            String out = eddieHook.sendMessageSync(msg, String.class);
+            return out;
+        } catch (Exception e){
+            log.error("Error", e);
+        }
+        return "Failed";
     }
 
     @GetMapping("/getTestQueueList")
