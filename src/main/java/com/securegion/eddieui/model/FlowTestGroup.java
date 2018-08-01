@@ -14,4 +14,5 @@ public class FlowTestGroup {
     @Id
     private String id;
     private String name;
+    private String type;
 }
