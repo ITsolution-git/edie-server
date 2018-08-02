@@ -46,23 +46,23 @@ public class FlowSimulateApi {
     }
 
     @PostMapping("/simulateConnector")
-    public String simulateConnector(@RequestBody Message m) {
+    public Object simulateConnector(@RequestBody List<Message> m) {
         try {
             Message msg = Message.builder()
                     .type(Const.MSG_TYPE_FUNC)
                     .functionCategory("Internal")
                     .subcategory("Simulate")
                     .method("simulate")
-                    .data(mapper.createObjectNode()
-                            .put("connectorId", m.getConnectorId())
-                            .put("text", m.getText()))
+                    .data(new HashMap<String, Object>(){{
+                        put("messages", m);
+                    }})
                     .build();
-            String out = eddieHook.sendMessageSync(msg, String.class);
+            Result<Object> out = eddieHook.sendMessageSync(msg, Result.class);
             return out;
         } catch (Exception e){
             log.error("Error", e);
         }
-        return "Failed";
+        return new Result<Object>();
     }
 
     @GetMapping("/getTestQueueList")
