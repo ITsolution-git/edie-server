@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-@RequestMapping("/group")
+@RequestMapping("/vendorproduct")
 @RestController
 public class VendorProductApi {
     @Autowired IMHook imHook;
