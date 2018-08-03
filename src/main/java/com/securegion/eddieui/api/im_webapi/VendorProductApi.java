@@ -26,7 +26,7 @@ public class VendorProductApi {
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("VendorProduct")
-                .subcategory("VendorProduct")
+                .subcategory("VendorProductManage")
                 .method("getAll")
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
                 .build(), Object.class), res);
@@ -36,7 +36,7 @@ public class VendorProductApi {
     Object getById(@PathVariable("id") String id, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("VendorProduct")
-                .subcategory("VendorProduct")
+                .subcategory("VendorProductManage")
                 .method("getById")
                 .data(mapper.createObjectNode().put("id", id))
                 .build(), Object.class), res);
@@ -46,7 +46,7 @@ public class VendorProductApi {
     Object add(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("VendorProduct")
-                .subcategory("VendorProduct")
+                .subcategory("VendorProductManage")
                 .method("save")
                 .data(entity)
                 .build(), Object.class), res);
@@ -56,7 +56,7 @@ public class VendorProductApi {
     Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("VendorProduct")
-                .subcategory("VendorProduct")
+                .subcategory("VendorProductManage")
                 .method("save")
                 .data(entity)
                 .build(), Object.class), res);
@@ -69,7 +69,7 @@ public class VendorProductApi {
         }};
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("VendorProduct")
-                .subcategory("VendorProduct")
+                .subcategory("VendorProductManage")
                 .method("delete")
                 .data(data)
                 .build(), Object.class);
