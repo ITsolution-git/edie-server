@@ -235,7 +235,8 @@ public class DeviceApi {
                 ).build(), Result.class);
     }
 
-    @GetMapping("/installAgent") Result<String> installAgent(String id, String collectorId) {
+    @GetMapping("/installAgent")
+    Result<String> installAgent(String id, String collectorId) {
         return imHook.sendMessageSync(Message.builder()
                 .functionCategory("Device")
                 .subcategory("Device")
@@ -243,6 +244,17 @@ public class DeviceApi {
                 .data(mapper.createObjectNode()
                         .put("id", id)
                         .put("collectorId", collectorId)
+                ).build(), Result.class);
+    }
+
+    @GetMapping("/findAllApps")
+    Object findAllApps(boolean hideDuplicate) {
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Device")
+                .subcategory("Device")
+                .method("findAllApps")
+                .data(mapper.createObjectNode()
+                        .put("hideDuplicate", hideDuplicate)
                 ).build(), Result.class);
     }
 }
