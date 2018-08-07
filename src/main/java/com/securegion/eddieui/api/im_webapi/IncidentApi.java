@@ -75,4 +75,17 @@ public class IncidentApi {
                 .data(data)
                 .build(), Object.class);
     }
+
+    @GetMapping("/search/findBySimulation")
+    Object findBySimulation(@PageableDefault Pageable pageable) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable));
+
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Incident")
+                .subcategory("Incident")
+                .method("findBySimulation")
+                .data(data)
+                .build(), Object.class);
+    }
 }
