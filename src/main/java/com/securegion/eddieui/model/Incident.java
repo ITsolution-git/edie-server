@@ -52,5 +52,6 @@ public class Incident {
     private String ip;
     private String text;
     private List<String> tags;
+    private boolean simulationTest;
 }
 
