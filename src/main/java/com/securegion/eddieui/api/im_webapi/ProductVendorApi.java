@@ -51,4 +51,27 @@ public class ProductVendorApi {
                 .data(entity)
                 .build(), Object.class), res);
     }
+
+    @PutMapping("/{id}")
+    Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("VendorProduct")
+                .subcategory("ProductVendor")
+                .method("save")
+                .data(entity)
+                .build(), Object.class), res);
+    }
+
+    @DeleteMapping("/{id}")
+    Object delete(@PathVariable("id") String id) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("id", id);
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("VendorProduct")
+                .subcategory("ProductVendor")
+                .method("delete")
+                .data(data)
+                .build(), Object.class);
+    }
 }
