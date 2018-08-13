@@ -26,6 +26,8 @@ public class BrainCell {
     private String functionMethod;
     private boolean external;
     private String runOn;
+    private String version;
+    private String productId;
 
     private boolean blockIP;
     private String severity;
