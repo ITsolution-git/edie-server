@@ -18,15 +18,15 @@ import java.util.Map;
 
 @RequestMapping("/vendorproduct")
 @RestController
-public class VendorProductApi {
+public class ProductApi {
     @Autowired IMHook imHook;
     @Autowired ObjectMapper mapper;
 
     @GetMapping
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("VendorProduct")
-                .subcategory("VendorProductManage")
+                .functionCategory("Product")
+                .subcategory("ProductManage")
                 .method("getAll")
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
                 .build(), Object.class), res);
@@ -35,8 +35,8 @@ public class VendorProductApi {
     @GetMapping("/{id}")
     Object getById(@PathVariable("id") String id, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("VendorProduct")
-                .subcategory("VendorProductManage")
+                .functionCategory("Product")
+                .subcategory("ProductManage")
                 .method("getById")
                 .data(mapper.createObjectNode().put("id", id))
                 .build(), Object.class), res);
@@ -45,8 +45,8 @@ public class VendorProductApi {
     @PostMapping
     Object add(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("VendorProduct")
-                .subcategory("VendorProductManage")
+                .functionCategory("Product")
+                .subcategory("ProductManage")
                 .method("save")
                 .data(entity)
                 .build(), Object.class), res);
@@ -55,8 +55,8 @@ public class VendorProductApi {
     @PutMapping("/{id}")
     Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("VendorProduct")
-                .subcategory("VendorProductManage")
+                .functionCategory("Product")
+                .subcategory("ProductManage")
                 .method("save")
                 .data(entity)
                 .build(), Object.class), res);
@@ -68,8 +68,8 @@ public class VendorProductApi {
             put("id", id);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("VendorProduct")
-                .subcategory("VendorProductManage")
+                .functionCategory("Product")
+                .subcategory("ProductManage")
                 .method("delete")
                 .data(data)
                 .build(), Object.class);

@@ -25,7 +25,7 @@ public class ProductVendorApi {
     @GetMapping
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("VendorProduct")
+                .functionCategory("Product")
                 .subcategory("ProductVendor")
                 .method("getAll")
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
@@ -35,7 +35,7 @@ public class ProductVendorApi {
     @GetMapping("/{id}")
     Object getById(@PathVariable("id") String id, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("VendorProduct")
+                .functionCategory("Product")
                 .subcategory("ProductVendor")
                 .method("getById")
                 .data(mapper.createObjectNode().put("id", id))
@@ -45,7 +45,7 @@ public class ProductVendorApi {
     @PostMapping
     Object add(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("VendorProduct")
+                .functionCategory("Product")
                 .subcategory("ProductVendor")
                 .method("save")
                 .data(entity)
@@ -55,7 +55,7 @@ public class ProductVendorApi {
     @PutMapping("/{id}")
     Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("VendorProduct")
+                .functionCategory("Product")
                 .subcategory("ProductVendor")
                 .method("save")
                 .data(entity)
@@ -68,7 +68,7 @@ public class ProductVendorApi {
             put("id", id);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("VendorProduct")
+                .functionCategory("Product")
                 .subcategory("ProductVendor")
                 .method("delete")
                 .data(data)

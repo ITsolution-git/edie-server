@@ -27,7 +27,7 @@ public class ProductTypeApi {
     @GetMapping
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("VendorProduct")
+                .functionCategory("Product")
                 .subcategory("ProductType")
                 .method("getAll")
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
@@ -37,7 +37,7 @@ public class ProductTypeApi {
     @GetMapping("/{id}")
     Object getById(@PathVariable("id") String id, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("VendorProduct")
+                .functionCategory("Product")
                 .subcategory("ProductType")
                 .method("getById")
                 .data(mapper.createObjectNode().put("id", id))
@@ -47,7 +47,7 @@ public class ProductTypeApi {
     @PostMapping
     Object add(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("VendorProduct")
+                .functionCategory("Product")
                 .subcategory("ProductType")
                 .method("save")
                 .data(entity)
@@ -57,7 +57,7 @@ public class ProductTypeApi {
     @PutMapping("/{id}")
     Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("VendorProduct")
+                .functionCategory("Product")
                 .subcategory("ProductType")
                 .method("save")
                 .data(entity)
@@ -70,7 +70,7 @@ public class ProductTypeApi {
             put("id", id);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("VendorProduct")
+                .functionCategory("Product")
                 .subcategory("ProductType")
                 .method("delete")
                 .data(data)
