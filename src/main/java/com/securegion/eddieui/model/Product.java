@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -12,5 +14,12 @@ import lombok.NoArgsConstructor;
 public class Product {
     private String id;
     private String name;
-    private String desc;
+    private String description;
+    private String version;
+
+    private List<String> tags;
+    private List<String> classifiers;
+    private List<String> parsers;
+    private List<String> workflows;
+    private List<String> incidents;
 }
