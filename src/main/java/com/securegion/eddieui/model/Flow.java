@@ -58,5 +58,7 @@ public class Flow {
     private boolean applyAllDevices;
     private List<String> applyDeviceIds;
 
+    private String productId;
+
     private long updated;
 }
