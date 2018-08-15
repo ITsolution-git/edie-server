@@ -58,7 +58,13 @@ public class Flow {
     private boolean applyAllDevices;
     private List<String> applyDeviceIds;
 
+    private ProductFilterType filterType;
+    private String productTypeId;
     private String productId;
 
     private long updated;
+
+    public enum ProductFilterType {
+        PRODUCT, PRODUCT_TYPE
+    }
 }
