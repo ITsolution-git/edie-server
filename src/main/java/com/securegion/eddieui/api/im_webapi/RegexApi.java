@@ -2,6 +2,7 @@ package com.securegion.eddieui.api.im_webapi;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.securegion.eddieui.model.Result;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,12 +16,14 @@ import java.util.regex.Pattern;
 @RestController
 public class RegexApi {
     @PostMapping("/testRegex")
-    Object testRegex(@RequestBody JsonNode body) {
+    Result<String> testRegex(@RequestBody JsonNode body) {
         String regex = StringUtils.defaultString(body.path("regex").asText());
         String text = StringUtils.defaultString(body.path("text").asText());
 
         Matcher m = Pattern.compile(regex).matcher(text);
 
-        return null;
+        Result<String> result = new Result<>();
+        result.setSuccess(m.find());
+        return result;
     }
 }
