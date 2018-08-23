@@ -48,26 +48,11 @@ public class Device implements Serializable {
 
     private Map<String, Object> params;
 
-//    private String mapid;
-    private List<String> mapids;
-    private Float x;
-    private Float y;
-    private Float width;
-    private Float height;
-    private Float angle;
-    private Float textX;
-    private Float textY;
-    private Float textWidth;
-    private Float textSize;
-    private String align;
-
-    private Line line;
-
-    private String groupid;
-
     private List<GaugeItem> gauges;
     private boolean gaugeLocked;
 
     private String customerId;
+
+    private List<String> productIds;
 }
 
