@@ -54,6 +54,7 @@ public class FlowItem {
     private String room;
 
     private Map<String, Object> uiprops;
+    private Map<String, Object> grokFieldValues;
 
     private List<FlowItem> flowItemDetails;
 }
