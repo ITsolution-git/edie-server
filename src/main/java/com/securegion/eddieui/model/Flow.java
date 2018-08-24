@@ -45,6 +45,8 @@ public class Flow {
     private boolean sendBack;
 
     private boolean openIncident;
+    private boolean sendChat;
+    private String chatChannel;
 
     private boolean useCorrelation;
     private List<String> correlations;
