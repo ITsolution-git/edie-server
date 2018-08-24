@@ -55,7 +55,7 @@ public class FlowItem {
 
     private Map<String, Object> uiprops;
     private Map<String, Object> grokFieldValues;
-    private Map<String, Map<String, String>> grokFieldRules;
+    private Map<String, GrokFieldRule> grokFieldRules;
     private List<String> visibleGrokFields;
 
     private List<FlowItem> flowItemDetails;
