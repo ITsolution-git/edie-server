@@ -44,6 +44,10 @@ public class Flow {
     private boolean paused;
     private boolean sendBack;
 
+    private boolean timeRange;
+    private int startHour;
+    private int endHour;
+
     private boolean openIncident;
     private boolean sendChat;
     private String chatChannel;
