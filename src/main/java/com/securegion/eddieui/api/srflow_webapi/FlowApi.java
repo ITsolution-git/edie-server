@@ -292,4 +292,23 @@ public class FlowApi {
         }
         return null;
     }
+
+
+    @PostMapping("/resetCustomerFlow")
+    Flow resetCustomerFlow(@RequestBody Flow flow) {
+        try {
+            Message msg = Message.builder()
+                    .type(Const.MSG_TYPE_FUNC)
+                    .functionCategory("Flow")
+                    .subcategory("Manage")
+                    .method("resetCustomerFlow")
+                    .data(flow)
+                    .build();
+            Flow res = flowHook.sendMessageSync(msg, Flow.class);
+            return res;
+        } catch (Exception e) {
+            log.error("Error", e);
+        }
+        return null;
+    }
 }
