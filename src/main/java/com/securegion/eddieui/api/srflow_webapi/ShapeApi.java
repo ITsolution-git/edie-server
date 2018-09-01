@@ -72,4 +72,15 @@ public class ShapeApi {
                 .data(data)
                 .build(), Object.class);
     }
+
+    @PostMapping("/testScript")
+    Object testScript(@RequestBody JsonNode body, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(flowHook.sendMessageSync(Message.builder()
+                .type(Const.MSG_TYPE_FUNC)
+                .functionCategory("Flow")
+                .subcategory("Shape")
+                .method("testScript")
+                .data(body)
+                .build(), Object.class), res);
+    }
 }
