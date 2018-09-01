@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Log4j2
 @RestController
@@ -44,5 +46,30 @@ public class ShapeApi {
                 .method("add")
                 .data(entity)
                 .build(), Object.class), res);
+    }
+
+    @PutMapping("/{id}")
+    Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(flowHook.sendMessageSync(Message.builder()
+                .type(Const.MSG_TYPE_FUNC)
+                .functionCategory("Flow")
+                .subcategory("Shape")
+                .method("update")
+                .data(entity)
+                .build(), Object.class), res);
+    }
+
+    @DeleteMapping("/{id}")
+    Object delete(@PathVariable("id") String id) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("id", id);
+        }};
+        return flowHook.sendMessageSync(Message.builder()
+                .type(Const.MSG_TYPE_FUNC)
+                .functionCategory("Flow")
+                .subcategory("Shape")
+                .method("delete")
+                .data(data)
+                .build(), Object.class);
     }
 }
