@@ -15,6 +15,7 @@ import java.util.Map;
 public class FlowItem {
     public enum ContentType {SIMPLE, VARIABLE, COMBINED}
     private String uuid;
+    private String shapeId;
 
     private int step;
     private String name;
