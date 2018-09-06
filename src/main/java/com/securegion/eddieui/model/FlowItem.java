@@ -58,5 +58,8 @@ public class FlowItem {
     private Map<String, GrokFieldRule> grokFieldRules;
     private List<String> visibleGrokFields;
 
+    private String outputName;
+    private List<String> outputVars;
+
     private List<FlowItem> flowItemDetails;
 }
