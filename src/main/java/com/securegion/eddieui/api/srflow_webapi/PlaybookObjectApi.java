@@ -46,4 +46,29 @@ public class PlaybookObjectApi {
                 .data(entity)
                 .build(), Object.class), res);
     }
+
+    @PutMapping("/{id}")
+    Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(flowHook.sendMessageSync(Message.builder()
+                .type(Const.MSG_TYPE_FUNC)
+                .functionCategory("Flow")
+                .subcategory("PlaybookObject")
+                .method("update")
+                .data(entity)
+                .build(), Object.class), res);
+    }
+
+    @DeleteMapping("/{id}")
+    Object delete(@PathVariable("id") String id) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("id", id);
+        }};
+        return flowHook.sendMessageSync(Message.builder()
+                .type(Const.MSG_TYPE_FUNC)
+                .functionCategory("Flow")
+                .subcategory("PlaybookObject")
+                .method("delete")
+                .data(data)
+                .build(), Object.class);
+    }
 }
