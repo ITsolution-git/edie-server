@@ -37,6 +37,26 @@ public class ShapeApi {
         return ResponseUtil.wrapResponse(data, res);
     }
 
+    @GetMapping("/{id}")
+    Object getAllShapes(@PathVariable("id") String id, HttpServletResponse res) {
+        Object data = null;
+        try {
+            Message msg = Message.builder()
+                    .type(Const.MSG_TYPE_FUNC)
+                    .functionCategory("Flow")
+                    .subcategory("Shape")
+                    .method("findById")
+                    .data(new HashMap<String, String>(){{
+                        put("id", id);
+                    }})
+                    .build();
+            data = flowHook.sendMessageSync(msg, Object.class);
+        } catch (Exception e) {
+            log.error("Error", e);
+        }
+        return ResponseUtil.wrapResponse(data, res);
+    }
+
     @PostMapping
     Object add(@RequestBody JsonNode entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(flowHook.sendMessageSync(Message.builder()
