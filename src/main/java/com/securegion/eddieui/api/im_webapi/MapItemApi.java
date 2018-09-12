@@ -47,7 +47,7 @@ public class MapItemApi {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
                 .functionCategory("MapItem")
                 .subcategory("MapItem")
-                .method("getById")
+                .method("findByMapids")
                 .data(new HashMap<String, Object>(){{
                     put("mapids", mapids);
                 }})
