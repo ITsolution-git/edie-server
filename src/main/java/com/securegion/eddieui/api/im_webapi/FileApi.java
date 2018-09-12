@@ -65,7 +65,7 @@ public class FileApi {
 
                 IOUtils.write(content, response.getOutputStream());
             } else {
-                response.sendRedirect("/images/" + name);
+                response.sendRedirect("http://eddie.avatar.securegion.com/images/" + name);
             }
         } catch (Exception e) {
             log.error("Error", e);
