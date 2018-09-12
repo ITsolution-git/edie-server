@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RequestMapping("/mapitem")
@@ -38,6 +39,18 @@ public class MapItemApi {
                 .subcategory("MapItem")
                 .method("getById")
                 .data(mapper.createObjectNode().put("id", id))
+                .build(), Object.class), res);
+    }
+
+    @GetMapping("/search/findByMapids")
+    Object findByMapids(@RequestParam("mapids") List<String> mapids, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("MapItem")
+                .subcategory("MapItem")
+                .method("getById")
+                .data(new HashMap<String, Object>(){{
+                    put("mapids", mapids);
+                }})
                 .build(), Object.class), res);
     }
 
