@@ -24,8 +24,8 @@ public class MapItemApi {
     @GetMapping
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("mapitem")
-                .subcategory("mapitem")
+                .functionCategory("MapItem")
+                .subcategory("MapItem")
                 .method("getAll")
                 .data(mapper.createObjectNode().put("pageRequest", PageRequestUtil.serialize((PageRequest)pageable)))
                 .build(), Object.class), res);
@@ -34,8 +34,8 @@ public class MapItemApi {
     @GetMapping("/{id}")
     Object getById(@PathVariable("id") String id, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("mapitem")
-                .subcategory("mapitem")
+                .functionCategory("MapItem")
+                .subcategory("MapItem")
                 .method("getById")
                 .data(mapper.createObjectNode().put("id", id))
                 .build(), Object.class), res);
@@ -44,8 +44,8 @@ public class MapItemApi {
     @PostMapping
     Object add(@RequestBody Map entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("mapitem")
-                .subcategory("mapitem")
+                .functionCategory("MapItem")
+                .subcategory("MapItem")
                 .method("save")
                 .data(entity)
                 .build(), Object.class), res);
@@ -54,8 +54,8 @@ public class MapItemApi {
     @PutMapping("/{id}")
     Object save(@RequestBody Map entity, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
-                .functionCategory("mapitem")
-                .subcategory("mapitem")
+                .functionCategory("MapItem")
+                .subcategory("MapItem")
                 .method("save")
                 .data(entity)
                 .build(), Object.class), res);
@@ -67,8 +67,8 @@ public class MapItemApi {
             put("id", id);
         }};
         return imHook.sendMessageSync(Message.builder()
-                .functionCategory("mapitem")
-                .subcategory("mapitem")
+                .functionCategory("MapItem")
+                .subcategory("MapItem")
                 .method("delete")
                 .data(data)
                 .build(), Object.class);
