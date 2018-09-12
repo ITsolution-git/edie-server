@@ -6,6 +6,7 @@ import com.securegion.eddieui.model.Message;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,8 @@ import java.util.Map;
 @RestController
 public class FileApi {
     @Autowired IMHook imHook;
+
+    @Value("${eddie.url.public}") String EDDIE_PUBLIC_URL;
 
     @PostMapping("/upload")
     CustomImage handleFileUpload(@RequestParam("file") MultipartFile file){
@@ -65,7 +68,7 @@ public class FileApi {
 
                 IOUtils.write(content, response.getOutputStream());
             } else {
-                response.sendRedirect("http://eddie.avatar.securegion.com/images/" + name);
+                response.sendRedirect(EDDIE_PUBLIC_URL + "/images/" + name);
             }
         } catch (Exception e) {
             log.error("Error", e);

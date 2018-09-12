@@ -17,6 +17,7 @@ sra:
 eddie:
   url:
     base: http://${docker_network}:6008
+    public: http://eddie-avatar.securegion.com
     sendmsg: ${eddie.url.base}/onMessage
     sendmsgsync: ${eddie.url.base}/sendMessageSync
 flow:
