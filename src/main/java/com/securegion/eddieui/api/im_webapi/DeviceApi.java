@@ -8,11 +8,9 @@ import com.securegion.eddieui.model.Result;
 import com.securegion.eddieui.util.PageRequestUtil;
 import com.securegion.eddieui.util.ResponseUtil;
 import lombok.extern.log4j.Log4j2;
-import org.apache.commons.lang3.SerializationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
@@ -256,5 +254,18 @@ public class DeviceApi {
                 .data(mapper.createObjectNode()
                         .put("hideDuplicate", hideDuplicate)
                 ).build(), Result.class);
+    }
+
+    @GetMapping("/device/search/findByIds")
+    Object findByIds(@RequestParam("ids") List<String> ids) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("ids", ids);
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Device")
+                .subcategory("Device")
+                .method("findByIdIn")
+                .data(data)
+                .build(), Object.class);
     }
 }

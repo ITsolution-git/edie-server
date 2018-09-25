@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-@RequestMapping("/vendorproduct")
+@RequestMapping("/product")
 @RestController
 public class ProductApi {
     @Autowired IMHook imHook;
@@ -71,6 +72,19 @@ public class ProductApi {
                 .functionCategory("Product")
                 .subcategory("ProductManage")
                 .method("delete")
+                .data(data)
+                .build(), Object.class);
+    }
+
+    @GetMapping("/product/search/findByIds")
+    Object findByIds(@RequestParam("ids") List<String> ids) {
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("ids", ids);
+        }};
+        return imHook.sendMessageSync(Message.builder()
+                .functionCategory("Product")
+                .subcategory("ProductManage")
+                .method("findByIdIn")
                 .data(data)
                 .build(), Object.class);
     }
