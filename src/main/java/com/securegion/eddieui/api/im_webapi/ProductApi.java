@@ -76,7 +76,7 @@ public class ProductApi {
                 .build(), Object.class);
     }
 
-    @GetMapping("/product/search/findByIds")
+    @GetMapping("/search/findByIds")
     Object findByIds(@RequestParam("ids") List<String> ids) {
         Map<String, Object> data = new HashMap<String, Object>(){{
             put("ids", ids);

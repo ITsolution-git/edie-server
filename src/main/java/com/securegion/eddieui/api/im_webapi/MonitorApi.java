@@ -41,7 +41,7 @@ public class MonitorApi {
                 .build(), Object.class), res);
     }
 
-    @GetMapping("/monitor/search/findByIds")
+    @GetMapping("/search/findByIds")
     Object findByIds(@RequestParam("ids") List<String> ids) {
         Map<String, Object> data = new HashMap<String, Object>(){{
             put("ids", ids);
