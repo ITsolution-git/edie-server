@@ -25,7 +25,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer im
     @Autowired MonitorUISocketHandler monitorUISocketHandler;
     @Autowired EventSocketHandler eventSocketHandler;
 
-    private String[] allowedOrigins = new String[] {"http://localhost:3000", "http://eddie.avatar.securegion.com"};
+    private String[] allowedOrigins = new String[] {"http://localhost:3000", "https://eddie-avatar.securegion.com"};
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
