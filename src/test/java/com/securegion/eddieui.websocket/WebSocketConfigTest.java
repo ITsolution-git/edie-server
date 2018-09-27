@@ -28,7 +28,7 @@ public class WebSocketConfigTest {
         for(int i = 0; i < 10; i++) {
             webSocketConfig.send("incidents", incidents);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
