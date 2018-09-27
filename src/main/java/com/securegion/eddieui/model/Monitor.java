@@ -37,4 +37,5 @@ public class Monitor {
     private String agentType;
     private String collectorId;
     private String credentialId;
+    private String parentName;
 }

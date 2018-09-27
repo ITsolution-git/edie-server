@@ -1,4 +1,4 @@
-package com.securegion.sr_im.model;
+package com.securegion.eddieui.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
