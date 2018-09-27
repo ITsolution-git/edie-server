@@ -15,4 +15,8 @@ public class MessagesProcessingMain {
     public void enqueue(List<Message> messages) {
         incomingMessagesQueue.addAll(messages);
     }
+
+    public void releaseQueue() {
+
+    }
 }
