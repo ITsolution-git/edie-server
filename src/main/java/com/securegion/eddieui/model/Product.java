@@ -28,4 +28,5 @@ public class Product {
     private List<ProductDetectedAction> detectedActions;
 
     private Status status;
+    private String parentName;
 }
