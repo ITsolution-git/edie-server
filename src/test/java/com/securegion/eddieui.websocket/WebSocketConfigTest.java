@@ -25,6 +25,14 @@ public class WebSocketConfigTest {
     @Test
     public void pushIncidentsTest() {
         Collection<Incident> incidents = Arrays.asList(Incident.builder().id("1").build());
-        webSocketConfig.send("incidents", incidents);
+        for(int i = 0; i < 10; i++) {
+            webSocketConfig.send("incidents", incidents);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
  }
