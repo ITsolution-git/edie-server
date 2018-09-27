@@ -1,4 +1,4 @@
-package com.securegion.eddieui.model;
+package com.securegion.sr_im.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by SERGE on 21/08/2018.
@@ -20,8 +19,11 @@ public class MapItem {
     @Id
     private String id;
 
-    private Map<ItemType, String> item;
-    private enum ItemType {DEVICE, MONITOR, PRODUCT}
+    private enum ItemType {DEVICE, MONITOR, PRODUCT, LINE, LONGHUB}
+    private ItemType type;
+    private String itemId;
+
+    private String groupid;
 
     private List<String> mapids;
     private Float x;
@@ -35,7 +37,11 @@ public class MapItem {
     private Float textSize;
     private String align;
 
-    private Line line;
-
-    private String groupid;
+    private String from;
+    private String to;
+    private Integer fromPoint;
+    private Integer toPoint;
+    private String lineWidth;
+    private String color;
+    private String lineType;
 }
