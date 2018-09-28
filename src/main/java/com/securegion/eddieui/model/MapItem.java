@@ -22,6 +22,7 @@ public class MapItem {
     private enum ItemType {DEVICE, MONITOR, PRODUCT, LINE, LONGHUB}
     private ItemType type;
     private String itemId;
+    private String parentName;
 
     private String groupid;
 
