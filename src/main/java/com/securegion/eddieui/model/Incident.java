@@ -53,5 +53,7 @@ public class Incident {
     private String text;
     private List<String> tags;
     private boolean simulationTest;
+    private String productId;
+    private boolean classifiedAndParsed;
 }
 
