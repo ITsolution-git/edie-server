@@ -19,9 +19,10 @@ public class MapItem {
     @Id
     private String id;
 
-    private enum ItemType {DEVICE, MONITOR, PRODUCT, LINE, LONGHUB}
+    private enum ItemType {DEVICE, MONITOR, PRODUCT, LINE, LONGHUB, CUSTOM}
     private ItemType type;
     private String itemId;
+    private java.util.Map<String, Object> params;
 
     private String groupid;
 
