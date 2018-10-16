@@ -1,5 +1,6 @@
 package com.securegion.eddieui.api.im_webapi;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.securegion.eddieui.hook.IMHook;
 import com.securegion.eddieui.model.Message;
 import com.securegion.eddieui.model.Severity;
@@ -9,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -88,4 +87,15 @@ public class IncidentApi {
                 .data(data)
                 .build(), Object.class);
     }
+
+    @PutMapping("/{id}")
+    Object save(@RequestBody JsonNode entity, HttpServletResponse res) {
+        return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
+                .functionCategory("Incident")
+                .subcategory("Incident")
+                .method("save")
+                .data(entity)
+                .build(), Object.class), res);
+    }
+
 }
