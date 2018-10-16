@@ -29,4 +29,6 @@ public class Product {
 
     private Status status;
     private String parentName;
+
+    private long updated;
 }
