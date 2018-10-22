@@ -19,10 +19,8 @@ import java.util.Map;
 @RequestMapping("/producttype")
 @RestController
 public class ProductTypeApi {
-    @Autowired
-    IMHook imHook;
-    @Autowired
-    ObjectMapper mapper;
+    @Autowired IMHook imHook;
+    @Autowired ObjectMapper mapper;
 
     @GetMapping
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
