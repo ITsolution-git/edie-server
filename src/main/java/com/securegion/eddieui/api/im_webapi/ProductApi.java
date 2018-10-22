@@ -23,6 +23,7 @@ public class ProductApi {
     @Autowired IMHook imHook;
     @Autowired ObjectMapper mapper;
 
+
     @GetMapping
     Object getAll(@PageableDefault Pageable pageable, HttpServletResponse res) {
         return ResponseUtil.wrapResponse(imHook.sendMessageSync(Message.builder()
