@@ -33,6 +33,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer im
     }
 
     public void send(String path , Object msg) {
+        log.info("Sent to : `/frontendupdates/"+path+"` , msg: "+msg.toString());
         template.convertAndSend("/frontendupdates/"+path, msg);
     }
 

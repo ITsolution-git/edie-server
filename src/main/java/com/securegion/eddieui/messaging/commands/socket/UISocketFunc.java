@@ -1,6 +1,7 @@
 package com.securegion.eddieui.messaging.commands.socket;
 
 import com.securegion.eddieui.messaging.commands.Command;
+import com.securegion.eddieui.model.Incident;
 import com.securegion.eddieui.model.Message;
 import com.securegion.eddieui.util.MessageUtil;
 import com.securegion.eddieui.websocket.WebSocketConfig;
@@ -8,6 +9,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -26,7 +28,7 @@ public class UISocketFunc implements Command {
         return null;
     }
 
-    Function<Object, String> pushIncidents = (data) -> {
+    Function<List<Incident>, String> pushIncidents = (data) -> {
         webSocket.send("incidents", data);
         return "";
     };
