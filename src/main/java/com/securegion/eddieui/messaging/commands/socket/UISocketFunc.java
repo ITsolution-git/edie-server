@@ -22,6 +22,8 @@ public class UISocketFunc implements Command {
         switch (method) {
             case "pushIncidents":
                 return pushIncidents.apply(MessageUtil.getParam(message, "incidents", null));
+            case "pushMapItemIds":
+                return pushMapItemIds.apply(MessageUtil.getParam(message, "mapItemIds", null));
             default:
                 log.error("Method not found: " + method);
         }
@@ -30,6 +32,11 @@ public class UISocketFunc implements Command {
 
     Function<List<Incident>, String> pushIncidents = (data) -> {
         webSocket.send("incidents", data);
+        return "";
+    };
+
+    Function<List<String>, String> pushMapItemIds = (data) -> {
+        webSocket.send("mapitems", data);
         return "";
     };
 }
