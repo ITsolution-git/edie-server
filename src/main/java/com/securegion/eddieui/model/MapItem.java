@@ -24,6 +24,8 @@ public class MapItem {
     private String itemId;
     private java.util.Map<String, Object> params;
 
+    private String parentName;
+
     private String groupid;
 
     private List<String> mapids;
